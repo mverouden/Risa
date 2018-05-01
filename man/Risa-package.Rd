@@ -23,7 +23,7 @@
   Alejandra Gonzalez-Beltran, Steffen Neumann, Audrey Kauffmann, Gabriella Rustici, Philippe Rocca-Serra, Eamonn Maguire, Susanna-Asunta Sansone.
   Maintainer: Alejandra Gonzalez-Beltran \email{isatools@googlegroups.com}  
 }
-\seealso{ \code{readISAtab}, \code{processAssayXcmsSet}, \code{updateAssayMetadata}, \code{write.ISAtab} }
+\seealso{\code{\link{readISAtab}}, \code{\link{processAssayXcmsSet}}, \code{\link{updateAssayMetadata}}, \code{\link{write.ISAtab}}}
 \examples{
      ## Example of readISAtab for a mass spectrometry experiment from a zip file
      isazip = system.file("extdata","faahKO-metadata.zip", package="Risa")
