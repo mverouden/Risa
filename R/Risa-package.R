@@ -1,13 +1,12 @@
 #' Risa package overview.
 #'
 #' The Risa package builds R objects from ISA-tab format files and it is a component
-#' of the ISA software infrastructure (see \url{http://isa-tools.org/}). ISA stands
-#' for Investigation, Study, Assay and the infrastructure revolves around the ISA-Tab
-#' format, which supports descriptions of biological experiments, with focus but not
-#' limited to high-throughput experiments. The format is supported by a series of 
-#' open-source tools (all available in There is a growing international user
-#' community of the ISA infrastructure, featured in the ISA commons website
-#' (\url{http://isacommons.org}).
+#' of the ISA software infrastructure. ISA stands for Investigation, Study, Assay
+#' and the infrastructure revolves around the ISA-Tab format, which supports
+#' descriptions of biological experiments, with focus but not limited to high-
+#' throughput experiments. The format is supported by a series of open-source tools
+#' (see \url{http://isa-tools.org/}). There is a growing international user community
+#' of the ISA infrastructure, featured in the ISA commons website (\url{http://isacommons.org}).
 #'
 #' The source code and latest version of the Risa package can be found in the GitHub
 #' repository \url{https://github.com/ISA-tools/Risa}. Please, submit all 'bugs' and
@@ -41,7 +40,7 @@
 #'          \code{\link{updateAssayMetadata}},
 #'          \code{\link{write.ISAtab}}
 #'
-#' @author Alejandra Gonzalez-Beltran (maintainer: \email{isatools\@googlegroups.com} ),
+#' @author Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools\@googlegroups.com }),
 #'         Steffen Neumann,
 #'         Audrey Kauffmann,
 #'         Gabriella Rustici,
