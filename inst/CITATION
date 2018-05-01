@@ -1,16 +1,18 @@
 citHeader("To cite the Risa package in publications use:")
 
-citEntry(entry="article",  
-   author=c(
-   person("Alejandra", "Gonz\\'{a}lez-Beltr\\'{a}n"), person("Steffen", "Neumann"), person("Eamonn","Maguire"),
-   person("Philippe","Rocca-Serra"), person("Susanna-Assunta","Sansone")),
-   title="{T}he {R}isa {R}/{B}ioconductor package: integrative data analysis
-  from experimental metadata and back again",
-   journal="BMC Bioinformatics",
-   year="2014",
-   volume="15",
-   pages="(Suppl 1):S11",
-   url="http://www.biomedcentral.com/1471-2105/15/S1/S11",
-   textVersion = paste("Gonzalez-Beltran A., Neumann S., Maguire E., Rocca-Serra P., Sansone S.A.",
-                       "The Risa R/Bioconductor package: integrative data analysis from experimental metadata and back again",
-                       "BMC Bioinformatics, 2014, 15(Suppl 1):S11"))
+citEntry(
+    entry = "article",
+    author = c(person("Alejandra", "Gonz\\'{a}lez-Beltr\\'{a}n"),
+               person("Steffen", "Neumann"),
+               person("Eamonn","Maguire"),
+               person("Philippe","Rocca-Serra"),
+               person("Susanna-Assunta","Sansone")),
+    title = "{T}he {R}isa {R}/{B}ioconductor package: integrative data analysis from experimental metadata and back again",
+    journal = "BMC Bioinformatics",
+    year = "2014",
+    volume = "15",
+    pages = "(Suppl 1):S11",
+    url = "https://doi.org/10.1186/1471-2105-15-S1-S11",
+    textVersion = paste("Gonzalez-Beltran A., Neumann S., Maguire E., Rocca-Serra P., Sansone S.A.",
+                        "The Risa R/Bioconductor package: integrative data analysis from experimental metadata and back again",
+                        "BMC Bioinformatics, 2014, 15(Suppl 1):S11"))
