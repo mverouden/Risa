@@ -18,7 +18,7 @@ citEntry(
     abstract = "The ISA-Tab format and software suite have been developed to break the silo effect induced by technology-specific formats for a variety of data types and to better support experimental metadata tracking. Experimentalists seldom use a single technique to monitor biological signals. Providing a multi-purpose, pragmatic and accessible format that abstracts away common constructs for describing I nvestigations, S tudies and A ssays, ISA is increasingly popular. To attract further interest towards the format and extend support to ensure reproducible research and reusable data, we present the Risa package, which delivers a central component to support the ISA format by enabling effortless integration with R, the popular, open source data crunching environment.",
     issn = "1471-2105",
     doi = "10.1186/1471-2105-15-S1-S11",
-    url = "https://doi.org/10.1186/1471-2105-15-S1-S11"
+    url = "https://doi.org/10.1186/1471-2105-15-S1-S11",
     textVersion = paste("Gonzalez-Beltran A., Neumann S., Maguire E., Sansone S.A., Rocca-Serra P.",
                         "The Risa R/Bioconductor package: integrative data analysis from experimental metadata and back again.",
                         "BMC Bioinformatics, 2014, 15(Suppl 1):S11"))
