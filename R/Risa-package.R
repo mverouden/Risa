@@ -40,7 +40,7 @@
 #'          \code{\link{updateAssayMetadata}},
 #'          \code{\link{write.ISAtab}}
 #'
-#' @author Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools\@googlegroups.com }),
+#' @author Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools@googlegroups.com }),
 #'         Steffen Neumann,
 #'         Audrey Kauffmann,
 #'         Gabriella Rustici,

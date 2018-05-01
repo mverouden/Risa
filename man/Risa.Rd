@@ -73,7 +73,7 @@ isatab.object <- readISAtab(path = temp)
          \code{\link{write.ISAtab}}
 }
 \author{
-Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools\@googlegroups.com }),
+Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools@googlegroups.com }),
         Steffen Neumann,
         Audrey Kauffmann,
         Gabriella Rustici,
