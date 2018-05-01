@@ -47,7 +47,6 @@
 #'         Philippe Rocca-Serra, Eamonn Maguire
 #'
 #' @examples
-#' \dontrun{
 #' ## Example of readISAtab for a mass spectrometry experiment from a zip file
 #' isazip <- system.file("extdata","faahKO-metadata.zip", package = "Risa")
 #' isaset <- readISAtab(zipfile = isazip,
@@ -67,8 +66,7 @@
 #'                       grep("txt", dir(system.file(package = "faahKO")), value = TRUE))
 #' file.copy(isafiles, temp, recursive = TRUE)
 #' isatab.object <- readISAtab(path = temp) 
-#' }
-#' 
+#'
 #' @docType package
 #' @name Risa
 NULL

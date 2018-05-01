@@ -43,7 +43,6 @@ the Pleasure Planet in Star Trek (see \url{http://en.memory-alpha.org/wiki/Risa}
 and that 'Risa' means laughter in Spanish.
 }
 \examples{
-\dontrun{
 ## Example of readISAtab for a mass spectrometry experiment from a zip file
 isazip <- system.file("extdata","faahKO-metadata.zip", package = "Risa")
 isaset <- readISAtab(zipfile = isazip,
@@ -63,7 +62,6 @@ isafiles <- file.path(system.file(package = "faahKO"),
                       grep("txt", dir(system.file(package = "faahKO")), value = TRUE))
 file.copy(isafiles, temp, recursive = TRUE)
 isatab.object <- readISAtab(path = temp) 
-}
 
 }
 \seealso{
