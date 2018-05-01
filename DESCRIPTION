@@ -1,23 +1,44 @@
 Package: Risa
-Version: 1.15.1
+Type: Package
 Date: 2013-08-15
-Title: Converting experimental metadata from ISA-tab into Bioconductor data structures
-Author: Alejandra Gonzalez-Beltran, Audrey Kauffmann, Steffen Neumann, Gabriella Rustici, ISA Team
+Title: 
+    Converting experimental metadata from ISA-tab into Bioconductor data structures
+Version: 1.15.1
+Description: The Investigation / Study / Assay (ISA) tab-delimited format is a
+    general purpose framework with which to collect and communicate complex metadata
+    (i.e. sample characteristics, technologies used, type of measurements made)
+    from experiments employing a combination of technologies, spanning from
+    traditional approaches to high-throughput techniques. Risa allows to access
+    metadata/data in ISA-Tab format and build Bioconductor data structures. Currently,
+    data generated from microarray, flow cytometry and metabolomics-based (i.e.
+    mass spectrometry) assays are supported.
+    The package is extendable and efforts are undergoing to support metadata associated
+    to proteomics assays.
+Author:
+    Alejandra Gonzalez-Beltran,
+    Audrey Kauffmann,
+    Steffen Neumann,
+    Gabriella Rustici,
+    ISA Team
 Maintainer: Alejandra Gonzalez-Beltran <alejandra.gonzalez.beltran@gmail.com>
-Depends: R (>= 2.0.9), Biobase (>= 2.4.0), methods, Rcpp (>= 0.9.13), biocViews, affy
-Imports: xcms
-Suggests: faahKO (>= 1.2.11)
-Description: The Investigation / Study / Assay (ISA) tab-delimited 
-	 format is a general purpose framework with which to collect and communicate 
-	 complex metadata (i.e. sample characteristics, technologies used, type 
-	 of measurements made) from experiments employing a combination of 
-	 technologies, spanning from traditional approaches to high-throughput
-	 techniques. Risa allows to access metadata/data in ISA-Tab format and 
-	 build Bioconductor data structures. Currently, data generated from microarray, 
-	 flow cytometry and metabolomics-based (i.e. mass spectrometry) assays are supported. 
-   The package is extendable and efforts are undergoing to support metadata associated to proteomics assays.
+Encoding: UTF-8
+Depends: 
+    R (>= 2.0.9),
+    Biobase (>= 2.38.0),
+    methods,
+    Rcpp (>= 0.9.13),
+    biocViews,
+    affy
+Imports: 
+    xcms
+Suggests: 
+    faahKO (>= 1.2.11)
 License: LGPL
-biocViews: Annotation, DataImport, MassSpectrometry
+biocViews: 
+    Annotation,
+    DataImport,
+    MassSpectrometry
 URL: http://www.isa-tools.org/
 BugReports: https://github.com/ISA-tools/Risa/issues
-
+LazyData: TRUE
+RoxygenNote: 6.0.1
