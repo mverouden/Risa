@@ -51,6 +51,7 @@ isaset <- readISAtab(zipfile = isazip,
                      verbose = TRUE)
 
 require("faahKO")
+
 ## Example of readISAtab for mass spectrometry data
 temp <- tempdir()
 datafiles <- c(file.path(system.file("cdf/KO", package = "faahKO"),
@@ -65,15 +66,10 @@ isatab.object <- readISAtab(path = temp)
 
 }
 \seealso{
-\code{\link{readISAtab}},
-         \code{\link{processAssayXcmsSet}},
-         \code{\link{updateAssayMetadata}},
-         \code{\link{write.ISAtab}}
+\code{\link{readISAtab}}, \code{\link{processAssayXcmsSet}},
+         \code{\link{updateAssayMetadata}}, \code{\link{write.ISAtab}}
 }
 \author{
-Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools@googlegroups.com }),
-        Steffen Neumann,
-        Audrey Kauffmann,
-        Gabriella Rustici,
-        Philippe Rocca-Serra, Eamonn Maguire
+Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com}),
+Steffen Neumann, Audrey Kauffmann, Gabriella Rustici, Philippe Rocca-Serra, Eamonn Maguire
 }

@@ -35,16 +35,12 @@
 #' the Pleasure Planet in Star Trek (see \url{http://en.memory-alpha.org/wiki/Risa})
 #' and that 'Risa' means laughter in Spanish.
 #'
-#' @seealso \code{\link{readISAtab}},
-#'          \code{\link{processAssayXcmsSet}},
-#'          \code{\link{updateAssayMetadata}},
-#'          \code{\link{write.ISAtab}}
+#' @seealso \code{\link{readISAtab}}, \code{\link{processAssayXcmsSet}},
+#'          \code{\link{updateAssayMetadata}}, \code{\link{write.ISAtab}}
 #'
-#' @author Alejandra Gonzalez-Beltran (maintainer, e-mail: \email{isatools@googlegroups.com }),
-#'         Steffen Neumann,
-#'         Audrey Kauffmann,
-#'         Gabriella Rustici,
-#'         Philippe Rocca-Serra, Eamonn Maguire
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com}),
+#' Steffen Neumann, Audrey Kauffmann, Gabriella Rustici, Philippe Rocca-Serra, Eamonn Maguire
 #'
 #' @examples
 #' ## Example of readISAtab for a mass spectrometry experiment from a zip file
@@ -55,6 +51,7 @@
 #'                      verbose = TRUE)
 #' 
 #' require("faahKO")
+#'
 #' ## Example of readISAtab for mass spectrometry data
 #' temp <- tempdir()
 #' datafiles <- c(file.path(system.file("cdf/KO", package = "faahKO"),
@@ -66,6 +63,13 @@
 #'                       grep("txt", dir(system.file(package = "faahKO")), value = TRUE))
 #' file.copy(isafiles, temp, recursive = TRUE)
 #' isatab.object <- readISAtab(path = temp) 
+#'
+#' @import Biobase
+#' @import Rcpp
+#' @import affy
+#' @import biocViews
+#' @import methods
+#' @importFrom xcms xcmsSet
 #'
 #' @docType package
 #' @name Risa

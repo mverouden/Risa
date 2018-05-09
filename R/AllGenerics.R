@@ -1,5 +1,9 @@
 ## ISATab-class
 ## get
+#' @title 
+#' Extract methods 
+#'
+#' @description 
 #' extract slots of ISATab class
 #'
 #' @name [

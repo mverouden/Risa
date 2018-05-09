@@ -1,7 +1,7 @@
-#' @title 
+#' @title
 #' S4 Class ISATab
 #'
-#' @description 
+#' @description
 #' An S4 class to store information from an ISATab dataset, including an
 #' investigation file, one or more study files, and one or more assay files for
 #' each study file.
@@ -115,6 +115,41 @@ ISATab <- setClass(Class = "ISATab",
                      assay.tabs = "list")
                     ) 
 
+#' @title
+#' S4 Class AssayTab
+#'
+#' @description
+#' An S4 class to store information of an AssayTab.
+#'
+#' @slot path A length-one character vector containing the path to the ISA-Tab
+#'            dataset.
+#' @slot study.filename A character vector with the filename of the study to
+#'                      which this assay belongs to.
+#' @slot study.identifier A character vector with the identifier of the study to
+#'                        which this assay belongs to.
+#' @slot assay.filename A character vector with the filename of the assay.
+#' @slot assay.file A data frame object with the contents of the assay file.
+#' @slot assay.technology.type A character vector with the technology type of the
+#'                             assay.
+#' @slot assay.measurement.type A character vector with the measurement type of
+#'                              the assay.
+#' @slot assay.names A data frame object with the assay names for the assay file.
+#' @slot data.filenames A data frame object with the data filenames for the assay.
+#'
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @examples
+#' showClass("AssayTab")
+#' showClass("MSAssayTab")
+#' showClass("MicroarrayAssayTab")
+#' showClass("SeqAssayTab")
+#' showClass("NMRAssayTab")
+#'
+#' @keywords classes
+#'
+#' @seealso \code{\link{ISATab-class}}, \code{\link{ISATab-methods}}
+#' @aliases MSAssayTab, MicroarrayAssayTab, SeqAssayTab, NMRAssayTab
 AssayTab <- setClass(Class = "AssayTab",
                      slots = c(
                        path = "character",
