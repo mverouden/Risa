@@ -24,6 +24,20 @@ getPackagesInBiocView <- function(view,
   }  
   return(bv[[view]])
 }
+
+#' Suggest Bioconductor pacakges.
+#'
+#' Suggest a list of packages available in Bioconductor, which may be useful for
+#' processing the assay according to its technology and measurement types.
+#'
+#' @param isa an object of class \linkS4class{ISATab}.
+#' @param bioc.version The version number of Bioconductor to be considered as
+#'                     the source of the pacakges for suggestions.
+#' 
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @export
 suggestBiocPackage <- function(isa, bioc.version = bioconductor.version ) {
   mapping.file <- system.file("extdata",
                               "ISA-BiocViews-Mapping.csv",

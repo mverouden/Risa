@@ -1,4 +1,25 @@
-### Methods to deal with assays whose technology type is mass spectrometry 
+### Methods to deal with assays whose technology type is mass spectrometry
+#' Retrieves a vector with the assay filenames corresponding to mass spectrometry.
+#'
+#' Given an object of class \linkS4class{ISATab}, this method retrieves a vector
+#' with the assay filenames corresponding to mass spectrometry (identified by
+#' having a column called 'Raw Spectral Data File').
+#'
+#' @param isa An object of the \code{\link{ISATab-class}}.
+#' 
+#' @return A character vector with the assay filenames corresponding to mass
+#'         spectrometry.
+#'
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @examples
+#' data.dir <- system.file("extdata", package="Risa")
+#' isazip <- system.file("extdata","faahKO-metadata.zip", package="Risa")
+#' faahkoISA <- readISAtab(zipfile = isazip, path = file.path(data.dir,"faahKOISA"), verbose =TRUE)
+#' ms.assay.filenames <- getMSAssayFilenames(faahkoISA)
+#'
+#' @export
 getMSAssayFilenames <- function(isa) {
   data.filenames <- isa["data.filenames"]
   assay.filenames <- isa["assay.filenames"]
@@ -8,6 +29,26 @@ getMSAssayFilenames <- function(isa) {
                                                })]
   return(ms.assay.filenames)
 }
+
+#' Indicates if an assay filename corresponds to a mass spectrometry assay.
+#'
+#' Indicates if an assay filename corresponds to a mass spectrometry assay.
+#'
+#' @param isa an object of class \linkS4class{ISATab}.
+#' @param assay.filename the filename of an assay file.
+#' 
+#' @return It retrieves a boolean value indicating wether the assay is a mass
+#'         spectrometry assay or not.
+#'
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @examples
+#' faahkoISA <- readISAtab(find.package("faahKO"))
+#' assay.filename <- faahkoISA["assay.filenames"][[1]]
+#' isMSAssay(faahkoISA, assay.filename)
+#'
+#' @export
 isMSAssay <- function(isa, assay.filename) {
   ms.assay.filenames <- getMSAssayFilenames(isa)
   return(assay.filename %in% ms.assay.filenames)
@@ -59,6 +100,33 @@ isMSAssay <- function(isa, assay.filename) {
 
 ### specific function to deal with assays whose technology type is mass
 ### spectrometry using the xcms package it returns an xcmsSet
+#' Build an xcmsSet object given a mass spectrometry assay and considering the
+#' first factor defined
+#'
+#' \code{processAssayXcmsSet.1factor} retrieves an xcmsSet object given an object
+#' of class \linkS4class{ISATab} and one of its assay filenames.
+#'
+#' @param isa an object of class \linkS4class{ISATab}, as retrieved by the
+#'            function \code{\link{readISAtab}}.
+#' @param assay.filename a boolean indicating to show messages for the different
+#'                       steps, if TRUE, or not to show them, if FALSE.
+#' @param ... extra arguments that can be pass down to the xcmsSet function from
+#'            the xcms package.
+#'
+#' @return the xcmsSet object built from the assay metadata, considering all the
+#'         factors defined, and data files.
+#'
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @seealso \code{\link{readISAtab}}
+#' 
+#' @examples
+#' faahkoISA <- readISAtab(find.package("faahKO"))
+#' assay.filename <- faahkoISA["assay.filenames"][[1]]
+#' xset <- processAssayXcmsSet(faahkoISA, assay.filename)
+#'
+#' @export
 processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
   i <- which(isa["assay.filenames"] == assay.filename)
   ## if 'Raw Spectral Data File' is one of the columns in the assay file = it is
@@ -103,6 +171,33 @@ processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
 
 ### specific function to deal with assays whose technology type is mass
 ### spectrometry using the xcms package it returns an xcmsSet, 
+#' Build an xcmsSet object given a mass spectrometry assay and considering all
+#' factors defined.
+#'
+#' \code{processAssayXcmsSet} retrieves an xcmsSet object given an ISA-tab
+#' object and one of its assay filenames.
+#'
+#' @param isa an object of class \linkS4class{ISATab}, as retrieved by the
+#'            function \code{\link{readISAtab}}.
+#' @param assay.filename a boolean indicating to show messages for the different
+#'                       steps, if TRUE, or not to show them, if FALSE.
+#' @param ... extra arguments that can be pass down to the xcmsSet function from
+#'            the xcms package.
+#'
+#' @return the xcmsSet object built from the assay metadata, considering all the
+#'         factors defined, and data files.
+#'
+#' @author Steffen Neumann, 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @seealso \code{\link{readISAtab}}
+#' 
+#' @examples
+#' faahkoISA <- readISAtab(find.package("faahKO"))
+#' assay.filename <- faahkoISA["assay.filenames"][[1]]
+#' xset <- processAssayXcmsSet(faahkoISA, assay.filename)
+#'
+#' @export
 processAssayXcmsSet <- function(isa, assay.filename, ...) {
   i <- which(isa["assay.filenames"] == assay.filename)
   if (Risa:::isatab.syntax$raw.spectral.data.file %in% colnames(isa["data.filenames"][[i]])) {

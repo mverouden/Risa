@@ -24,8 +24,8 @@ file).}
 An updated object from the \code{\link{ISAtab-class}}.
 }
 \description{
-\code{updataAssayMetadata}: Updates metadata into a particular assay file. See an example of use for a
-metabolite dataset at \url{https://github.com/sneumann/mtbls2}.
+\code{updataAssayMetadata}: Updates metadata into a particular assay file. See
+an example of use for a metabolite dataset at \url{https://github.com/sneumann/mtbls2}.
 }
 \examples{
 ### This example shows how to add values to the column "Derived Spectral Data File",

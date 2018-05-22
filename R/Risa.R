@@ -340,6 +340,27 @@ write.assay.file <- function(isa, assay.filename, path = getwd()) {
               na = "\"\"")
 }
 
+#' @title Retrieves the study filename to which an assay filename corresponds.
+#'
+#' @description Retrieve the filename of a study to which a known assay filename
+#'              corresponds.
+#'
+#' @param isa An object of the \code{\link{ISATab-class}}
+#' @param assay.filename A character vector with the name of the assay file for
+#'                       which the study filename needs to be retrieved.
+#'
+#' @return A character vector containing the study filename.
+#' 
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @examples
+#' faahkoISA <- readISAtab(path = find.package("faahKO"))
+#' getStudyFilename(isa = faahkoISA,
+#'                  assay.filename = faahkoISA@assay.filenames[[1]])
+#' @seealso \code{\link{readISAtab}}
+#'
+#' @export
 getStudyFilename <- function(isa, assay.filename) {
   j <- which(lapply(X = isa["assay.filenames.per.study"],
                     FUN = function(x){assay.filename %in% x}) == TRUE)

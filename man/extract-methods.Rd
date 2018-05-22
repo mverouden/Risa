@@ -21,7 +21,7 @@
 \S4method{[}{AssayTab,ANY,ANY,ANY}(x, i, j) <- value
 }
 \description{
-extract slots of ISATab class
+extract slots from an object of class \linkS4class{ISATab}.
 
-extract slots of AssayTab class
+extract slots from an object of class \linkS4class{AssayTab}.
 }

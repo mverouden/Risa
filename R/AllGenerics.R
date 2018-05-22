@@ -4,7 +4,7 @@
 #' Extract methods 
 #'
 #' @description 
-#' extract slots of ISATab class
+#' extract slots from an object of class \linkS4class{ISATab}.
 #'
 #' @name [
 #' @aliases [,ISATab-method
@@ -91,7 +91,7 @@ setReplaceMethod(
 
 ## AssayTab-class
 ## get
-#' extract slots of AssayTab class
+#' extract slots from an object of class \linkS4class{AssayTab}.
 #'
 #' @name [
 #' @aliases [,AssayTab-method
@@ -661,8 +661,23 @@ setMethod(
 ################################################################################
 ### generic method called 'getAssayRawDataFilenames' that dispatches on the type
 ### of object it's applied to
+#' @title Retrieve the raw data filenames in an ISATab dataset object.
+#'
+#' @description
+#' Retrieves the raw data filenames in an ISATab dataset given an object from
+#' the \code{\link{ISATab-class}} and a logical value indicating if the 
+#' filenames are retrieved with their full path or not.
+#'
+#' @param .Object an object of class \linkS4class{ISATab}
+#' @param full.path a length-one logical vector indicating whether the filenames
+#'                  should be retrieved with their full path [default: TRUE],
+#'                  or not (FALSE).
+#'
+#' @return 
+#'
+#' @export
 setGeneric(name = "getRawDataFilenames",
-           def = function(.Object, full.path=TRUE) {
+           def = function(.Object, full.path = TRUE) {
              standardGeneric("getRawDataFilenames")
            })
 setMethod(
@@ -682,10 +697,43 @@ setMethod(
 ################################################################################
 ### generic method called 'getAssayRawDataFilenames' that dispatches on the type
 ### of object it's applied to
+#' getAssayRawDataFilenames Generic
+#'
+#' Generic function to retrieve the raw data files for a particular assay type.
+#'
+#' @param .Object An object of a defined S4 class (\linkS4class{AssayTab},
+#'                \linkS4class{MSAssayTab}, \linkS4class{MicroarrayAssayTab},
+#'                \linkS4class{SeqAssayTab}, \linkS4class{NMRAssayTab}).
+#' @param full.path a length-one logical vector indicating whether the filenames
+#'                  should be retrieved with their full path [default: TRUE],
+#'                  or not (FALSE).
+#'
+#' @export
 setGeneric(name = "getAssayRawDataFilenames",
            def = function(.Object, full.path) {
              standardGeneric("getAssayRawDataFilenames")
            })
+#' @describeIn getAssayRawDataFilenames Retrieves the raw data filenames for a generic assay.
+setMethod(
+  f = "getAssayRawDataFilenames",
+  signature = c(.Object = "AssayTab",
+                full.path = "logical"),
+  definition = function(.Object, full.path = TRUE) {
+    raw.files <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$raw.data.file])
+    if (full.path) {
+      msfiles <- sapply(X = raw.files,
+                        FUN = function(x) {
+                          sapply(X = x,
+                                 FUN = function(y) {
+                                   paste(.Object["path"],
+                                         y,
+                                         sep = .Platform$file.sep)
+                                 })
+                        })
+    }
+    return(msfiles)
+  })
+#' @describeIn getAssayRawDataFilenames Retrieves the raw data filenames for an assay whose technology type is mass spectrometry. These data filenames correspond to those specified in the column 'Raw Spectral Data File'.
 setMethod(
   f = "getAssayRawDataFilenames",
   signature = c(.Object = "MSAssayTab",
@@ -703,6 +751,7 @@ setMethod(
     }
     return(msfiles)
   })
+#' @describeIn getAssayRawDataFilenames Retrieves the raw data filenames for an assay whose technology type is DNA microarray.
 setMethod(
   f = "getAssayRawDataFilenames",
   signature = c(.Object = "MicroarrayAssayTab",
@@ -723,6 +772,7 @@ setMethod(
     }
     return(microarray.files) 
   })
+#' @describeIn getAssayRawDataFilenames Retrieves the raw data filenames for an assay whose technology type is nucleotide sequencing.
 setMethod(
   f = "getAssayRawDataFilenames",
   signature = c(.Object = "SeqAssayTab",
@@ -742,25 +792,7 @@ setMethod(
     }
     return(msfiles)
   })
-setMethod(
-  f = "getAssayRawDataFilenames",
-  signature = c(.Object = "AssayTab",
-                full.path = "logical"),
-  definition = function(.Object, full.path = TRUE) {
-    raw.files <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$raw.data.file])
-    if (full.path) {
-      msfiles <- sapply(X = raw.files,
-                        FUN = function(x) {
-                          sapply(X = x,
-                                 FUN = function(y) {
-                                   paste(.Object["path"],
-                                         y,
-                                         sep = .Platform$file.sep)
-                                 })
-                        })
-    }
-    return(msfiles)
-  })
+#' @describeIn getAssayRawDataFilenames Retrieves the raw data filenames for an assay whose technology type is NMR spectroscopy.
 setMethod(
   f = "getAssayRawDataFilenames",
   signature = c(.Object = "NMRAssayTab",
