@@ -1,4 +1,4 @@
-Sys.setlocale('LC_ALL', 'C') 
+Sys.setlocale(category = "LC_ALL", locale = "C")
 
 ### start isatab.syntax list ----
 isatab.syntax <- list(
@@ -176,7 +176,7 @@ updateAssayMetadata <- function(isa, assay.filename, col.name, values) {
   ## update column of the assay.file
   assay.file[colnames(assay.file) == col.name] <- values
   ## update the isa object with modified assay.file
-  isa <- setAssayFile(isa,assay.filename, assay.file)
+  isa <- setAssayFile(isa, assay.filename, assay.file)
   return(isa)
 }
 
