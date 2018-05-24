@@ -146,7 +146,7 @@ setMethod(
     ## Reading in investigation file into a data frame
     number.columns <- max(count.fields(file = file.path(path, ifilename),
                                        sep = "\t",
-                                       quote = "\"'",
+                                       quote = "\"",
                                        blank.lines.skip = TRUE,
                                        comment.char = "#"),
                           na.rm = TRUE)
