@@ -129,7 +129,7 @@ setMethod(
     d <- dir(path)
     ## Investigation filename, and avoid editor autosave-files
     ifilename <- grep(pattern = paste("^",
-                                      Risa:::isatab.syntax$investigation.prefix,
+                                      isatab.syntax$investigation.prefix,
                                       ".*[a-zA-Z]$",
                                       sep = ""),
                       x = d,
@@ -159,33 +159,33 @@ setMethod(
                         col.names = paste0("V", seq_len(number.columns)))
     .Object["investigation.file"] <- ifile
     iidentifier <- as.character(
-      ifile[grep(pattern = Risa:::isatab.syntax$investigation.identifier,
+      ifile[grep(pattern = isatab.syntax$investigation.identifier,
                  x = ifile[, 1],
                  useBytes = TRUE), ][2][[1]])
     .Object["investigation.identifier"] <- iidentifier
     ## Study Identifiers  - as a list of strings
-    sidentifiers <- ifile[grep(pattern = Risa:::isatab.syntax$study.identifier,
+    sidentifiers <- ifile[grep(pattern = isatab.syntax$study.identifier,
                                x = ifile[, 1],
                                useBytes = TRUE), ][2][[1]]
     .Object["study.identifiers"] <- as.character(sidentifiers)
-    stitles <- ifile[grep(pattern = Risa:::isatab.syntax$study.title,
+    stitles <- ifile[grep(pattern = isatab.syntax$study.title,
                           x = ifile[, 1],
                           useBytes = TRUE), ][2][[1]]
     .Object["study.titles"] <- as.character(stitles)
-    sdescriptions <- ifile[grep(pattern = Risa:::isatab.syntax$study.description,
+    sdescriptions <- ifile[grep(pattern = isatab.syntax$study.description,
                                 x = ifile[, 1],
                                 useBytes = TRUE), ][2][[1]]
     .Object["study.descriptions"] <- as.character(sdescriptions)
-    spersonfirstnames <- Risa:::trim(as.character(
-      ifile[grep(pattern = Risa:::isatab.syntax$study.person.first.name,
+    spersonfirstnames <- trim(as.character(
+      ifile[grep(pattern = isatab.syntax$study.person.first.name,
                  x = ifile[, 1],
                  useBytes = TRUE), ][2][[1]]))
-    spersonlastnames <- Risa:::trim(as.character(
-      ifile[grep(pattern = Risa:::isatab.syntax$study.person.last.name,
+    spersonlastnames <- trim(as.character(
+      ifile[grep(pattern = isatab.syntax$study.person.last.name,
                  x = ifile[, 1],
                  useBytes = TRUE), ][2][[1]]))
-    spersonmidinitials <- Risa:::trim(as.character(
-      ifile[grep(pattern = Risa:::isatab.syntax$study.person.mid.initial,
+    spersonmidinitials <- trim(as.character(
+      ifile[grep(pattern = isatab.syntax$study.person.mid.initial,
                  x = ifile[, 1],
                  useBytes = TRUE), ][2][[1]]))
     .Object["study.contacts"] <- apply(X = cbind(spersonfirstnames,
@@ -194,18 +194,18 @@ setMethod(
                                        MARGIN = 1,
                                        FUN = paste,
                                        collapse = " ")
-    spersonaffiliations <- Risa:::trim(as.character(
-      ifile[grep(pattern = Risa:::isatab.syntax$study.person.affiliation,
+    spersonaffiliations <- trim(as.character(
+      ifile[grep(pattern = isatab.syntax$study.person.affiliation,
                  ifile[, 1],
                  useBytes = TRUE), ][2][[1]]))
     .Object["study.contacts.affiliations"] <- spersonaffiliations
     ## Study filenames (one or more)
     sfilenames <- unlist(sapply(
-      X = ifile[grep(pattern = Risa:::isatab.syntax$study.file.name,
+      X = ifile[grep(pattern = isatab.syntax$study.file.name,
                      x = ifile[, 1],
                      useBytes = TRUE), ],
       FUN = function(i) {
-        grep(Risa:::isatab.syntax$study.prefix,
+        grep(isatab.syntax$study.prefix,
              i,
              value = TRUE,
              useBytes = TRUE)
@@ -237,24 +237,24 @@ setMethod(
     ## List of assay filenames 
     # afilenames is a list with all the assay filenames (without association to studies)
     afilenames <- unlist(sapply(
-      X = ifile[grep(pattern = Risa:::isatab.syntax$study.assay.file.name,
+      X = ifile[grep(pattern = isatab.syntax$study.assay.file.name,
                      x = ifile[, 1],
                      useBytes = TRUE), ],
       FUN = function(i) {
-        grep(pattern = Risa:::isatab.syntax$assay.prefix,
+        grep(pattern = isatab.syntax$assay.prefix,
              x = i,
              value = TRUE,
              useBytes = TRUE)
       }))
     .Object["assay.filenames"] <- afilenames
     # getting afilenames associated with studies
-    afilenames.df <- ifile[grep(pattern = Risa:::isatab.syntax$study.assay.file.name,
+    afilenames.df <- ifile[grep(pattern = isatab.syntax$study.assay.file.name,
                                 x = ifile[, 1],
                                 useBytes = TRUE), ]
     afilenames.matrix <- apply(X = afilenames.df,
                                MARGIN = c(1, 2),
                                FUN = function(row) {
-                                 grep(pattern = Risa:::isatab.syntax$assay.prefix,
+                                 grep(pattern = isatab.syntax$assay.prefix,
                                       x = row, value = TRUE)
                                 })
     afilenames.lists <- split(x = afilenames.matrix,
@@ -298,26 +298,26 @@ setMethod(
     ## assay.names
     assay.names <- lapply(X = afiles,
                           FUN = function(i) {
-                            i[grep(pattern = Risa:::isatab.syntax$assay.name,
+                            i[grep(pattern = isatab.syntax$assay.name,
                                    x = colnames(i))]
                           })  
     .Object["assay.names"] <- assay.names
     ## Assay technology types
     # data frame with types
-    assay.tech.types <- ifile[which(ifile[[1]] == Risa:::isatab.syntax$study.assay.technology.type), ] 
+    assay.tech.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.technology.type), ] 
     # remove empty types - results in a list of types
     assay.tech.types <- na.omit(assay.tech.types[assay.tech.types != ""])
     #remove headers
-    assay.tech.types <- assay.tech.types[assay.tech.types != Risa:::isatab.syntax$study.assay.technology.type]
+    assay.tech.types <- assay.tech.types[assay.tech.types != isatab.syntax$study.assay.technology.type]
     ## Validate number of assay technology types == number of afiles
     if (length(assay.tech.types) != length(afiles)) {
       message("The number of assay files mismatches the number of assay types")
     }    
     .Object["assay.technology.types"] <- assay.tech.types
     ## Assay measurement types
-    assay.meas.types <- ifile[which(ifile[[1]] == Risa:::isatab.syntax$study.assay.measurement.type), ] 
+    assay.meas.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.measurement.type), ] 
     assay.meas.types <- na.omit(assay.meas.types[assay.meas.types != ""])
-    assay.meas.types <- assay.meas.types[assay.meas.types != Risa:::isatab.syntax$study.assay.measurement.type]
+    assay.meas.types <- assay.meas.types[assay.meas.types != isatab.syntax$study.assay.measurement.type]
     .Object["assay.measurement.types"] <- assay.meas.types
     ## Identifying what sample is studied in which assay
     ## assays is a list of data frames (one for each assay file)
@@ -330,7 +330,7 @@ setMethod(
                      })
     samples <- unique(unlist(lapply(X = sfiles,
                                     FUN = function(i) {
-                                      i[, grep(pattern = Risa:::isatab.syntax$sample.name,
+                                      i[, grep(pattern = isatab.syntax$sample.name,
                                                x = colnames(i))]
                                     })
                              )
@@ -338,20 +338,20 @@ setMethod(
     .Object["samples"] <- samples
     samples.per.assay.filename <- lapply(X = seq_len(length(afiles)),
                                          FUN = function(i) {
-                                           afiles[[i]][[Risa:::isatab.syntax$sample.name]]
+                                           afiles[[i]][[isatab.syntax$sample.name]]
                                          })
     names(samples.per.assay.filename) <- afilenames
     .Object["samples.per.assay.filename"] <- samples.per.assay.filename
     samples.per.study <- lapply(X = seq_len(length(sfiles)),
                                 FUN = function(i) {
-                                  sfiles[[i]][[Risa:::isatab.syntax$sample.name]]
+                                  sfiles[[i]][[isatab.syntax$sample.name]]
                                 })
     names(samples.per.study) <- sidentifiers
     .Object["samples.per.study"] <- samples.per.study
     assay.filenames.per.sample <- list()
     for (k in seq_len(length(samples))) {
       for (j in seq_len(length(afilenames))) {
-        if (samples[[k]] %in% afiles[[j]][[Risa:::isatab.syntax$sample.name]]) {
+        if (samples[[k]] %in% afiles[[j]][[isatab.syntax$sample.name]]) {
           if (length(assay.filenames.per.sample) < k) {
               assay.filenames.per.sample[[k]] <- list()
           }
@@ -400,30 +400,30 @@ setMethod(
     ## List of data filenames with assay filenames as keys
     dfilenames.per.assay <- lapply(X = afiles,
                                    FUN = function(i) {
-                                     i[, grep(pattern = Risa:::isatab.syntax$data.file,
+                                     i[, grep(pattern = isatab.syntax$data.file,
                                               x = colnames(i))]
                                    })
     .Object["data.filenames"] <- dfilenames.per.assay
     data.col.names <- lapply(X = seq_len(length(afiles)),
                              FUN = function(i) {
-                               if (Risa:::isatab.syntax$raw.data.file %in% colnames(afiles[[i]])) {
-                                 Risa:::isatab.syntax$raw.data.file
-                               } else if (Risa:::isatab.syntax$free.induction.decay.data.file %in% colnames(afiles[[i]])) {
-                                Risa:::isatab.syntax$free.induction.decay.data.file
-                               } else if (Risa:::isatab.syntax$array.data.file %in% colnames(afiles[[i]])) {
-                                Risa:::isatab.syntax$array.data.file
-                               } else if (Risa:::isatab.syntax$raw.spectral.data.file %in% colnames(afiles[[i]])) {
-                                Risa:::isatab.syntax$raw.spectral.data.file
+                               if (isatab.syntax$raw.data.file %in% colnames(afiles[[i]])) {
+                                 isatab.syntax$raw.data.file
+                               } else if (isatab.syntax$free.induction.decay.data.file %in% colnames(afiles[[i]])) {
+                                isatab.syntax$free.induction.decay.data.file
+                               } else if (isatab.syntax$array.data.file %in% colnames(afiles[[i]])) {
+                                isatab.syntax$array.data.file
+                               } else if (isatab.syntax$raw.spectral.data.file %in% colnames(afiles[[i]])) {
+                                isatab.syntax$raw.spectral.data.file
                                }
                              })
     sample.to.rawdatafile <- lapply(X = seq_len(length(afiles)),
                                     FUN = function(i) {
-                                      afiles[[i]][, c(Risa:::isatab.syntax$sample.name, data.col.names[[i]])]
+                                      afiles[[i]][, c(isatab.syntax$sample.name, data.col.names[[i]])]
                                     })
     sample.to.rawdatafile <- lapply(X = seq_len(length(afiles)),
                                     FUN = function(i) {
-                                      merge(x = sample.to.rawdatafile[[i]][!duplicated(sample.to.rawdatafile[[i]][[Risa:::isatab.syntax$sample.name]]), ],
-                                            y = sample.to.rawdatafile[[i]][duplicated(sample.to.rawdatafile[[i]][[Risa:::isatab.syntax$sample.name]]), ],
+                                      merge(x = sample.to.rawdatafile[[i]][!duplicated(sample.to.rawdatafile[[i]][[isatab.syntax$sample.name]]), ],
+                                            y = sample.to.rawdatafile[[i]][duplicated(sample.to.rawdatafile[[i]][[isatab.syntax$sample.name]]), ],
                                             all = TRUE)
                                     })
     .Object@sample.to.rawdatafile <- sample.to.rawdatafile
@@ -433,14 +433,14 @@ setMethod(
                                   })
     sample.to.assayname <- lapply(X = seq_len(length(afiles)),
                                   FUN = function(i) {
-                                    merge(x = sample.to.assayname[[i]][!duplicated(sample.to.assayname[[i]][[Risa:::isatab.syntax$sample.name]]), ],
-                                          y = sample.to.assayname[[i]][duplicated(sample.to.assayname[[i]][[Risa:::isatab.syntax$sample.name]]), ],
+                                    merge(x = sample.to.assayname[[i]][!duplicated(sample.to.assayname[[i]][[isatab.syntax$sample.name]]), ],
+                                          y = sample.to.assayname[[i]][duplicated(sample.to.assayname[[i]][[isatab.syntax$sample.name]]), ],
                                           all = TRUE)
                                   })
     .Object["sample.to.assayname"] <- sample.to.assayname
     rawdatafile.to.sample <- lapply(X = seq_len(length(afiles)),
                                     FUN = function(i) {
-                                      afiles[[i]][, c(data.col.names[[i]], Risa:::isatab.syntax$sample.name)]
+                                      afiles[[i]][, c(data.col.names[[i]], isatab.syntax$sample.name)]
                                     })
     rawdatafile.to.sample <- lapply(X = seq_len(length(afiles)),
                                     FUN = function(i) {
@@ -451,17 +451,17 @@ setMethod(
     .Object@rawdatafile.to.sample <- rawdatafile.to.sample
     assayname.to.sample <- lapply(X = afiles, 
                                   FUN = function(i) {
-                                    i[, c(grep(pattern = Risa:::isatab.syntax$assay.name,
+                                    i[, c(grep(pattern = isatab.syntax$assay.name,
                                                x = colnames(i),
                                                value = TRUE),
-                                          Risa:::isatab.syntax$sample.name)]
+                                          isatab.syntax$sample.name)]
                                   })
     assayname.to.sample <- lapply(X = seq_len(length(afiles)),
                                   FUN =  function(i) {
-                                    merge(x = assayname.to.sample[[i]][!duplicated(assayname.to.sample[[i]][, c(grep(pattern = Risa:::isatab.syntax$assay.name,
+                                    merge(x = assayname.to.sample[[i]][!duplicated(assayname.to.sample[[i]][, c(grep(pattern = isatab.syntax$assay.name,
                                                                                                                      x = colnames(assayname.to.sample[[i]]),
                                                                                                                      value = TRUE))]), ],
-                                          y = assayname.to.sample[[i]][duplicated(assayname.to.sample[[i]][, c(grep(pattern = Risa:::isatab.syntax$assay.name,
+                                          y = assayname.to.sample[[i]][duplicated(assayname.to.sample[[i]][, c(grep(pattern = isatab.syntax$assay.name,
                                                                                                                     x = colnames(assayname.to.sample[[i]]),
                                                                                                                     value = TRUE))]), ],
                                           all = TRUE)
@@ -586,7 +586,7 @@ setMethod(
     afiles <- .Object["assay.files"]
     assay.names <- lapply(X = afiles,
                           FUN = function(i) {
-                            i[grep(pattern = Risa:::isatab.syntax$assay.name,
+                            i[grep(pattern = isatab.syntax$assay.name,
                                    x = colnames(i))]
                           })
     assay.filenames <- .Object["assay.filenames"]
@@ -719,7 +719,7 @@ setMethod(
   signature = c(.Object = "AssayTab",
                 full.path = "logical"),
   definition = function(.Object, full.path = TRUE) {
-    raw.files <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$raw.data.file])
+    raw.files <- as.list(.Object["data.filenames"][isatab.syntax$raw.data.file])
     if (full.path) {
       msfiles <- sapply(X = raw.files,
                         FUN = function(x) {
@@ -739,7 +739,7 @@ setMethod(
   signature = c(.Object = "MSAssayTab",
                 full.path = "logical"),
   definition = function(.Object, full.path = TRUE) {
-    msfiles <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$raw.spectral.data.file])
+    msfiles <- as.list(.Object["data.filenames"][isatab.syntax$raw.spectral.data.file])
     if (full.path) {
       msfiles <- sapply(X = msfiles,
                         FUN = function(x) {
@@ -760,7 +760,7 @@ setMethod(
     # if (!isMicroarrayAssay(isa, assay.filename)) {
     #   stop("The ", assay.filename, " is not a microarray assay")
     # }
-    microarray.files <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$array.data.file])
+    microarray.files <- as.list(.Object["data.filenames"][isatab.syntax$array.data.file])
     if (full.path) {
       microarray.files <- sapply(X = microarray.files,
                                  FUN = function(x) {
@@ -778,7 +778,7 @@ setMethod(
   signature = c(.Object = "SeqAssayTab",
                 full.path = "logical"),
   definition = function(.Object, full.path = TRUE) {
-    msfiles <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$raw.data.file])
+    msfiles <- as.list(.Object["data.filenames"][isatab.syntax$raw.data.file])
     if (full.path) {
       msfiles <- sapply(X = msfiles,
                         FUN = function(x) {
@@ -798,7 +798,7 @@ setMethod(
   signature = c(.Object = "NMRAssayTab",
                 full.path = "logical"),
   definition = function(.Object, full.path = TRUE) {
-    raw.files <- as.list(.Object["data.filenames"][Risa:::isatab.syntax$free.induction.decay.data.file])
+    raw.files <- as.list(.Object["data.filenames"][isatab.syntax$free.induction.decay.data.file])
     if (full.path) {
       msfiles <- sapply(X = raw.files,
                         FUN = function(x) {
@@ -829,12 +829,12 @@ setMethod(
     # assay.files <- isa["assay.files"]
     # microarray.assay.filenames <- assay.filenames[sapply(X = assay.files,
     #                                                      FUN = function(x) {
-    #                                                        Risa:::isatab.syntax$hybridization.assay.name %in% names(x)
+    #                                                        isatab.syntax$hybridization.assay.name %in% names(x)
     #                                                      })]
     # return(microarray.assay.filenames)
     assay.filename <- .Object["assay.filename"]
     assay.file <- .Object["assay.file"]
-    assay.names <- assay.file[Risa:::isatab.syntax$hybridization.assay.name]
+    assay.names <- assay.file[isatab.syntax$hybridization.assay.name]
   })
 
 # getMicroarrayAssayFilenames <- function(isa) {
@@ -842,7 +842,7 @@ setMethod(
 #   assay.files <- isa["assay.files"]
 #   microarray.assay.filenames <- assay.filenames[sapply(X = assay.files,
 #                                                        FUN = function(x) {
-#                                                          Risa:::isatab.syntax$hybridization.assay.name %in% names(x)
+#                                                          isatab.syntax$hybridization.assay.name %in% names(x)
 #                                                        })]
 #   return(microarray.assay.filenames)
 # }

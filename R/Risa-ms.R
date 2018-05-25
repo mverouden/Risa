@@ -25,7 +25,7 @@ getMSAssayFilenames <- function(isa) {
   assay.filenames <- isa["assay.filenames"]
   ms.assay.filenames <- assay.filenames[sapply(X = data.filenames,
                                                FUN = function(x) {
-                                                 Risa:::isatab.syntax$raw.spectral.data.file %in% names(x)
+                                                 isatab.syntax$raw.spectral.data.file %in% names(x)
                                                })]
   return(ms.assay.filenames)
 }
@@ -81,7 +81,7 @@ isMSAssay <- function(isa, assay.filename) {
 # getMSRawDataFilenamesAssay <- function(isa, assay.filename, full.path = TRUE) {
 #   msfiles <- lapply(X = isa["data.filenames"][assay.filename],
 #                     FUN = function(x) {
-#                       x[Risa:::isatab.syntax$raw.spectral.data.file]
+#                       x[isatab.syntax$raw.spectral.data.file]
 #                     })
 #   if (full.path) {
 #     msfiles <- sapply(X = msfiles,
@@ -131,9 +131,9 @@ processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
   i <- which(isa["assay.filenames"] == assay.filename)
   ## if 'Raw Spectral Data File' is one of the columns in the assay file = it is
   ## a mass spectrometry assay
-  if (Risa:::isatab.syntax$raw.spectral.data.file %in% colnames(isa["data.filenames"][[i]])) {
+  if (isatab.syntax$raw.spectral.data.file %in% colnames(isa["data.filenames"][[i]])) {
     ## mass spectrometry files
-    msfiles <- isa["data.filenames"][[i]][[Risa:::isatab.syntax$raw.spectral.data.file]]
+    msfiles <- isa["data.filenames"][[i]][[isatab.syntax$raw.spectral.data.file]]
     # the assay file as an AnnotatedDataFrame
     pd <- try(Biobase::read.AnnotatedDataFrame(filename = file.path(isa["path"],
                                                                     isa["assay.filenames"][i]),
@@ -144,11 +144,11 @@ processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
                                                quote = "\""))
     ## Adding the raw spectral data files as the row names
     sampleNames(pd) = pd$Raw.Spectral.Data.File
-    if (length(grep(pattern = Risa:::isatab.syntax$factor.value,
+    if (length(grep(pattern = isatab.syntax$factor.value,
                     x = colnames(isa["assay.files"][[i]]))) != 0) {
       ## If there are explicit factors, use the first one of them
-      sclass <- isa["assay.files"][[i]][which(isa["assay.files"][[i]][[Risa:::isatab.syntax$sample.name]] %in% pd$Sample.Name),
-                                        grep(pattern = Risa:::isatab.syntax$factor.value,
+      sclass <- isa["assay.files"][[i]][which(isa["assay.files"][[i]][[isatab.syntax$sample.name]] %in% pd$Sample.Name),
+                                        grep(pattern = isatab.syntax$factor.value,
                                              x = colnames(isa["assay.files"][[i]]))[1]]
       wd <- getwd()
       setwd(isa["path"])
@@ -200,9 +200,9 @@ processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
 #' @export
 processAssayXcmsSet <- function(isa, assay.filename, ...) {
   i <- which(isa["assay.filenames"] == assay.filename)
-  if (Risa:::isatab.syntax$raw.spectral.data.file %in% colnames(isa["data.filenames"][[i]])) {
+  if (isatab.syntax$raw.spectral.data.file %in% colnames(isa["data.filenames"][[i]])) {
     ## mass spectrometry files
-    msfiles <- isa["data.filenames"][[i]][[Risa:::isatab.syntax$raw.spectral.data.file]]
+    msfiles <- isa["data.filenames"][[i]][[isatab.syntax$raw.spectral.data.file]]
     pd <- try(Biobase::read.AnnotatedDataFrame(filename = file.path(isa["path"], isa["assay.filenames"][i]),
                                                row.names = NULL,
                                                blank.lines.skip = TRUE,
@@ -210,7 +210,7 @@ processAssayXcmsSet <- function(isa, assay.filename, ...) {
                                                varMetadata.char = "$",
                                                quote = "\""))
     sampleNames(pd) <- pd$Raw.Spectral.Data.File
-    if (length(grep(pattern = Risa:::isatab.syntax$factor.value,
+    if (length(grep(pattern = isatab.syntax$factor.value,
                     x = colnames(isa["assay.files"][[i]]))) != 0) {
       ## If there are explicit factors, use them
       sclass <- as.data.frame(isa["factors"])

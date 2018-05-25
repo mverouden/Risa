@@ -29,7 +29,7 @@ getMicroarrayAssayFilenames <- function(isa) {
   assay.files <- isa["assay.files"]
   microarray.assay.filenames <- assay.filenames[sapply(X = assay.files,
                                                        FUN = function(x) {
-                                                         Risa:::isatab.syntax$hybridization.assay.name %in% names(x)
+                                                         isatab.syntax$hybridization.assay.name %in% names(x)
                                                        })]
   return(microarray.assay.filenames)
 }
@@ -143,7 +143,7 @@ getMicroarrayDerivedDataFilenamesAssay <- function(isa, assay.filename, full.pat
   if (!isMicroarrayAssay(isa, assay.filename)) {
     stop("The ", assay.filename, " is not a microarray assay")
   }
-  microarray.files <-  isa["data.filenames"][[assay.filename]][Risa:::isatab.syntax$derived.array.data.file]
+  microarray.files <-  isa["data.filenames"][[assay.filename]][isatab.syntax$derived.array.data.file]
   if (full.path) {
     microarray.files <- sapply(X = microarray.files,
                                FUN = function(x) {
