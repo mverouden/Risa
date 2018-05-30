@@ -212,17 +212,18 @@ setMethod(
         MARGIN = 2,
         FUN = paste,
         collapse = " ")
-      studyContacts[i, ] <- replaceExcess(studyContacts[i, ])
-      studyContacts[i, ] <- trim(studyContacts[i, ])
+      studyContacts[i, ] <- trim(replaceExcess(studyContacts[i, ]))
       rm(i, maxStudyContacts)
     }
     rownames(studyContacts) <- sidentifiers
     colnames(studyContacts) <- seq(1:ncol(studyContacts))
     .Object["study.contacts"] <- studyContacts
-    spersonaffiliations <- trim(as.character(
-      ifile[grep(pattern = isatab.syntax$study.person.affiliation,
-                 ifile[, 1],
-                 useBytes = TRUE), ][2][[1]]))
+    spersonaffiliations <- as.matrix(ifile[grep(pattern = isatab.syntax$study.person.affiliation,
+                                                x = ifile[, 1],
+                                                useBytes = TRUE), -c(1)])
+    spersonaffiliations <- trim(replaceExcess(spersonaffiliations))
+    rownames(spersonaffiliations) <- sidentifiers
+    colnames(spersonaffiliations) <- seq(1:ncol(spersonaffiliations))
     .Object["study.contacts.affiliations"] <- spersonaffiliations
     ## Study filenames (one or more)
     sfilenames <- unlist(sapply(

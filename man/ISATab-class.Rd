@@ -40,8 +40,10 @@ descriptions.}
 contacts for a specific study. The rowname specifies to
 which study the contacts belong.}
 
-\item{\code{study.contacts.affiliations}}{A character vector whose elements are the
-affilliations of the study contacts.}
+\item{\code{study.contacts.affiliations}}{A character matrix where each row contains
+the study contacts affiliations for a
+specific study. The rowname specifies to
+which study the contacts affiliations belong.}
 
 \item{\code{study.filenames}}{A character vector whose elements are the names of the
 study files.}
