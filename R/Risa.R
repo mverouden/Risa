@@ -40,6 +40,7 @@ technology.types <- list(
   nmr = "NMR spectroscopy")
 ### end technology.types list ----
 
+### Remove all fronting and trailing white space characters in  a string
 trim <- function(x) {
   gsub(pattern = "^\\s+|\\s+$", replacement = "", x)
 }
@@ -258,9 +259,10 @@ write.investigation.file <- function(isa, path = getwd()) {
               file = file.path(path, isa["investigation.filename"]),
               row.names = FALSE,
               col.names = FALSE, 
-              quote = TRUE,
+              quote = FALSE, # TRUE
               sep = "\t",
-              na = "\"\"")
+              na = "", # "\"\""
+              fileEncoding = "UTF-8")
 }
 
 #' @title Write a Study File of an ISA-Tab dataset.

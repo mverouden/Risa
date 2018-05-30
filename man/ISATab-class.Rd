@@ -36,7 +36,9 @@ identifiers.}
 \item{\code{study.descriptions}}{A character vector whose elements are the study
 descriptions.}
 
-\item{\code{study.contacts}}{A character vector whose elements are the study contacts.}
+\item{\code{study.contacts}}{A character matrix where each row contains the study
+contacts for a specific study. The rowname specifies to
+which study the contacts belong.}
 
 \item{\code{study.contacts.affiliations}}{A character vector whose elements are the
 affilliations of the study contacts.}

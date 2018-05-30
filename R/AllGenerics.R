@@ -153,9 +153,10 @@ setMethod(
     ifile <- read.table(file = file.path(path, ifilename),
                         sep = "\t",
                         fill = TRUE,
-                        na.strings = "NA",
+                        na.strings = "", # was "NA",
                         comment.char = "#",
                         blank.lines.skip = TRUE ,
+                        stringsAsFactors = FALSE,
                         col.names = paste0("V", seq_len(number.columns)))
     .Object["investigation.file"] <- ifile
     iidentifier <- as.character(
@@ -176,24 +177,38 @@ setMethod(
                                 x = ifile[, 1],
                                 useBytes = TRUE), ][2][[1]]
     .Object["study.descriptions"] <- as.character(sdescriptions)
-    spersonfirstnames <- trim(as.character(
-      ifile[grep(pattern = isatab.syntax$study.person.first.name,
-                 x = ifile[, 1],
-                 useBytes = TRUE), ][2][[1]]))
-    spersonlastnames <- trim(as.character(
-      ifile[grep(pattern = isatab.syntax$study.person.last.name,
-                 x = ifile[, 1],
-                 useBytes = TRUE), ][2][[1]]))
-    spersonmidinitials <- trim(as.character(
-      ifile[grep(pattern = isatab.syntax$study.person.mid.initial,
-                 x = ifile[, 1],
-                 useBytes = TRUE), ][2][[1]]))
-    .Object["study.contacts"] <- apply(X = cbind(spersonfirstnames,
-                                                 spersonmidinitials,
-                                                 spersonlastnames),
-                                       MARGIN = 1,
-                                       FUN = paste,
-                                       collapse = " ")
+    spersonfirstnames <- ifile[grep(pattern = isatab.syntax$study.person.first.name,
+                                    x = ifile[, 1],
+                                    useBytes = TRUE), -c(1)]
+    spersonmidinitials <- ifile[grep(pattern = isatab.syntax$study.person.mid.initial,
+                                     x = ifile[, 1],
+                                     useBytes = TRUE), -c(1)]
+    spersonmidinitials[is.na(spersonmidinitials)] <- ""
+    spersonlastnames <- ifile[grep(pattern = isatab.syntax$study.person.last.name,
+                                   x = ifile[, 1],
+                                   useBytes = TRUE), -c(1)]
+    studyContacts <- matrix(data = NA,
+                            nrow = ifelse(exists("spersonfirstnames"),
+                                          nrow(spersonfirstnames),
+                                          nrow(spersonlastnames)),
+                            ncol = ncol(ifile) - 1)
+    for (i in seq(1:nrow(studyContacts))) {
+      studyContacts[i, !is.na(spersonlastnames[i, ])] <- apply(
+        X = rbind(spersonfirstnames[i, !is.na(spersonlastnames[i, ])],
+                  spersonmidinitials[i, !is.na(spersonlastnames[i, ])],
+                  spersonlastnames[i, !is.na(spersonlastnames[i, ])]),
+
+        MARGIN = 2,
+        FUN = paste,
+        collapse = " ")
+      studyContacts[i, ] <- gsub(pattern = "\\s+",
+                                 replacement = " ",
+                                 x = studyContacts[i, ])
+      rm(i)
+    }
+    rownames(studyContacts) <- sidentifiers
+    colnames(studyContacts) <- seq(1:ncol(studyContacts))
+    .Object["study.contacts"] <- studyContacts
     spersonaffiliations <- trim(as.character(
       ifile[grep(pattern = isatab.syntax$study.person.affiliation,
                  ifile[, 1],

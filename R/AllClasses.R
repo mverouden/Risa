@@ -22,7 +22,9 @@
 #' @slot study.titles A character vector whose elements are the study titles.
 #' @slot study.descriptions A character vector whose elements are the study
 #'                          descriptions. 
-#' @slot study.contacts A character vector whose elements are the study contacts.
+#' @slot study.contacts A character matrix where each row contains the study
+#'                      contacts for a specific study. The rowname specifies to
+#'                      which study the contacts belong.
 #' @slot study.contacts.affiliations A character vector whose elements are the
 #'                                   affilliations of the study contacts.
 #' @slot study.filenames A character vector whose elements are the names of the
@@ -89,7 +91,7 @@ ISATab <- setClass(Class = "ISATab",
                      study.identifiers = "character",
                      study.titles = "character",
                      study.descriptions = "character",
-                     study.contacts = "character",
+                     study.contacts = "matrix",
                      study.contacts.affiliations = "character",
                      study.filenames = "character",
                      study.files = "list",
