@@ -29,8 +29,9 @@
 #'                                   the study contacts affiliations for a
 #'                                   specific study. The rowname specifies to
 #'                                   which study the contacts affiliations belong.
-#' @slot study.filenames A character vector whose elements are the names of the
-#'                       study files.
+#' @slot study.filenames A named character vector whose elements are the names of
+#'                       the study files. The vector element names are specified
+#'                       as the study identifiers.
 #' @slot study.files A list object of data frames with the contents of the study
 #'                   files.
 #' @slot assay.filenames A character vector whose elements list the names of the 
