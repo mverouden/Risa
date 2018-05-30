@@ -242,13 +242,14 @@ setMethod(
     ## Assign sidentifiers as names of the character vector sfilenames
     names(sfilenames) <- sidentifiers
     .Object["study.filenames"] <- sfilenames
-    ## TODO pretty printing sfilenames
     ## Validation of existance of study files
     if (!all(sapply(X = sfilenames,
                     FUN = function(i) {
                       file.exists(file.path(path, i))
                     }))) {
-      stop("Did not find some of the study files: ", sfilenames)
+      stop("Did not find some of the study files: ",
+           paste(sfilenames, collapse = ", "),
+           ".")
     }
     ## Reading study files into a list of data frames
     sfiles <- lapply(X = sfilenames,
