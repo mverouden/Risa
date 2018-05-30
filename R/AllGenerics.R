@@ -226,20 +226,20 @@ setMethod(
     colnames(spersonaffiliations) <- seq(1:ncol(spersonaffiliations))
     .Object["study.contacts.affiliations"] <- spersonaffiliations
     ## Study filenames (one or more)
-    sfilenames <- unlist(sapply(
-      X = ifile[grep(pattern = isatab.syntax$study.file.name,
-                     x = ifile[, 1],
-                     useBytes = TRUE), ],
-      FUN = function(i) {
-        grep(isatab.syntax$study.prefix,
-             i,
-             value = TRUE,
-             useBytes = TRUE)
-      }))
+    sfilenames <- unlist(
+      sapply(X = ifile[grep(pattern = isatab.syntax$study.file.name,
+                            x = ifile[, 1],
+                            useBytes = TRUE), ],
+             FUN = function(i) {
+               grep(pattern = isatab.syntax$study.prefix,
+                    x = i,
+                    value = TRUE,
+                    useBytes = TRUE)
+             }))
     if (length(sidentifiers) != length(sfilenames)) {
       stop("There are study files with no identifier assigned")
     }
-    ## Assign sidentifiers as names of the list sfilenames
+    ## Assign sidentifiers as names of the character vector sfilenames
     names(sfilenames) <- sidentifiers
     .Object["study.filenames"] <- sfilenames
     ## TODO pretty printing sfilenames
