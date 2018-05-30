@@ -40,9 +40,14 @@ technology.types <- list(
   nmr = "NMR spectroscopy")
 ### end technology.types list ----
 
-### Remove all fronting and trailing white space characters in  a string
+### Remove all excessive fronting and trailing whitespace characters in a string
 trim <- function(x) {
   gsub(pattern = "^\\s+|\\s+$", replacement = "", x)
+}
+
+### Replace excessive whitespace characters by a single one in a string
+replaceExcess <- function(x) {
+  gsub(pattern = "\\s+", replacement = " ", x)
 }
 
 #' @title
