@@ -183,28 +183,38 @@ setMethod(
     spersonmidinitials <- ifile[grep(pattern = isatab.syntax$study.person.mid.initial,
                                      x = ifile[, 1],
                                      useBytes = TRUE), -c(1)]
-    spersonmidinitials[is.na(spersonmidinitials)] <- ""
     spersonlastnames <- ifile[grep(pattern = isatab.syntax$study.person.last.name,
                                    x = ifile[, 1],
                                    useBytes = TRUE), -c(1)]
+    nospersonfirstnames <- apply(X = !is.na(spersonfirstnames),
+                                 MARGIN = 1,
+                                 FUN = sum)
+    nospersonmidinitials <- apply(X = !is.na(spersonmidinitials),
+                                  MARGIN = 1,
+                                  FUN = sum)
+    nospersonlastnames <- apply(X = !is.na(spersonlastnames),
+                                MARGIN = 1,
+                                FUN = sum)
+    spersonfirstnames[is.na(spersonfirstnames)] <- ""
+    spersonmidinitials[is.na(spersonmidinitials)] <- ""
+    spersonlastnames[is.na(spersonlastnames)] <- ""
     studyContacts <- matrix(data = NA,
-                            nrow = ifelse(exists("spersonfirstnames"),
-                                          nrow(spersonfirstnames),
-                                          nrow(spersonlastnames)),
+                            nrow = length(sidentifiers),
                             ncol = ncol(ifile) - 1)
     for (i in seq(1:nrow(studyContacts))) {
-      studyContacts[i, !is.na(spersonlastnames[i, ])] <- apply(
-        X = rbind(spersonfirstnames[i, !is.na(spersonlastnames[i, ])],
-                  spersonmidinitials[i, !is.na(spersonlastnames[i, ])],
-                  spersonlastnames[i, !is.na(spersonlastnames[i, ])]),
-
+      maxStudyContacts <- max(nospersonfirstnames[i],
+                              nospersonmidinitials[i],
+                              nospersonlastnames[i])
+      studyContacts[i, c(1:maxStudyContacts)] <- apply(
+        X = rbind(spersonfirstnames[i, c(1:maxStudyContacts)],
+                  spersonmidinitials[i, c(1:maxStudyContacts)],
+                  spersonlastnames[i, c(1:maxStudyContacts)]),
         MARGIN = 2,
         FUN = paste,
         collapse = " ")
-      studyContacts[i, ] <- gsub(pattern = "\\s+",
-                                 replacement = " ",
-                                 x = studyContacts[i, ])
-      rm(i)
+      studyContacts[i, ] <- replaceExcess(studyContacts[i, ])
+      studyContacts[i, ] <- trim(studyContacts[i, ])
+      rm(i, maxStudyContacts)
     }
     rownames(studyContacts) <- sidentifiers
     colnames(studyContacts) <- seq(1:ncol(studyContacts))
