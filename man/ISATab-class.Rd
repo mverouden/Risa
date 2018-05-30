@@ -45,8 +45,9 @@ the study contacts affiliations for a
 specific study. The rowname specifies to
 which study the contacts affiliations belong.}
 
-\item{\code{study.filenames}}{A character vector whose elements are the names of the
-study files.}
+\item{\code{study.filenames}}{A named character vector whose elements are the names of
+the study files. The vector element names are specified
+as the study identifiers.}
 
 \item{\code{study.files}}{A list object of data frames with the contents of the study
 files.}

@@ -255,43 +255,40 @@ setMethod(
     sfiles <- lapply(X = sfilenames,
                      FUN = function(i) {
                        read.table(file = file.path(path, i),
-                                  sep = "\t",
                                   header = TRUE,
+                                  sep = "\t",
+                                  na.strings = "NA",
                                   stringsAsFactors = FALSE,
                                   check.names = FALSE)
                      })
     .Object["study.files"] <- sfiles
     ## List of assay filenames 
     # afilenames is a list with all the assay filenames (without association to studies)
-    afilenames <- unlist(sapply(
-      X = ifile[grep(pattern = isatab.syntax$study.assay.file.name,
-                     x = ifile[, 1],
-                     useBytes = TRUE), ],
-      FUN = function(i) {
-        grep(pattern = isatab.syntax$assay.prefix,
-             x = i,
-             value = TRUE,
-             useBytes = TRUE)
-      }))
+    afilenames <- unlist(
+      sapply(X = ifile[grep(pattern = isatab.syntax$study.assay.file.name,
+                            x = ifile[, 1],
+                            useBytes = TRUE), ],
+             FUN = function(i) {
+               grep(pattern = isatab.syntax$assay.prefix,
+                    x = i,
+                    value = TRUE,
+                    useBytes = TRUE)
+             }))
+    names(afilenames) <- NULL
     .Object["assay.filenames"] <- afilenames
     # getting afilenames associated with studies
     afilenames.df <- ifile[grep(pattern = isatab.syntax$study.assay.file.name,
                                 x = ifile[, 1],
-                                useBytes = TRUE), ]
-    afilenames.matrix <- apply(X = afilenames.df,
-                               MARGIN = c(1, 2),
-                               FUN = function(row) {
-                                 grep(pattern = isatab.syntax$assay.prefix,
-                                      x = row, value = TRUE)
-                                })
-    afilenames.lists <- split(x = afilenames.matrix,
-                              f = row(afilenames.matrix, as.factor = TRUE))
-    afilenames.per.study <- lapply(X = seq_len(length(afilenames.lists)),
+                                useBytes = TRUE), -c(1)]
+    afilenames.list <- split(x = t(unlist(t(afilenames.df))),
+                              f = row(x = t(unlist(t(afilenames.df))),
+                                      as.factor = TRUE))
+    afilenames.per.study <- lapply(X = seq_len(length(afilenames.list)),
                                    FUN = function(i) {
                                      Filter(f = function(j) {
-                                       !identical(character(0), j)
+                                       !is.na(j)
                                      },
-                                     x = afilenames.lists[[i]])
+                                     x = afilenames.list[[i]])
                                    })
     names(afilenames.per.study) <- sidentifiers
     .Object["assay.filenames.per.study"] <- afilenames.per.study
