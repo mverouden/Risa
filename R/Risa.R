@@ -61,7 +61,8 @@ replaceExcess <- function(x) {
 #'             ISAtab files are located (if the parameter zipfile is not provided
 #'             or if it is equal to NULL), or the name of the directory where the
 #'             zip file will be extracted (if the parameter zipfile is not NULL).
-#'             The default value is the current working directory.
+#'             It should be supplied without a trailing "/". The default value is
+#'             the current working directory.
 #' @param zipfile A character vector with the name of the zip archive containing
 #'                ISAtab files. The default value is NULL.
 #' @param verbose A logical vector indicating to show messages for the different

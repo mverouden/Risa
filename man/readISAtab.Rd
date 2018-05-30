@@ -11,7 +11,8 @@ readISAtab(path = getwd(), zipfile = NULL, verbose = FALSE)
 ISAtab files are located (if the parameter zipfile is not provided
 or if it is equal to NULL), or the name of the directory where the
 zip file will be extracted (if the parameter zipfile is not NULL).
-The default value is the current working directory.}
+It should be supplied without a trailing "/". The default value is
+the current working directory.}
 
 \item{zipfile}{A character vector with the name of the zip archive containing
 ISAtab files. The default value is NULL.}
