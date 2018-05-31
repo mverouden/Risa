@@ -71,6 +71,9 @@ Name".}
 \item{\code{assay.technology.types}}{A character vector whose elements are the
 technology types for each assay.}
 
+\item{\code{assay.technology.types.per.study}}{A list object of assay technology types
+for each study in the investigation.}
+
 \item{\code{assay.measurement.types}}{A character vector whose elements list the
 measurement types for each assay.}
 

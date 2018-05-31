@@ -299,6 +299,7 @@ setMethod(
                        read.table(file = file.path(path, i),
                                   sep = "\t",
                                   header = TRUE,
+                                  na.strings = "NA",
                                   stringsAsFactors = FALSE,
                                   check.names = FALSE)
                      })
@@ -310,34 +311,53 @@ setMethod(
       FUN = function(j) {
         lapply(X = seq_len(length(afilenames.per.study[[j]])),
                FUN = function(i) {
-                 read.table(file = file.path(path, afilenames.per.study[[j]][[i]]),
+                 read.table(file = file.path(path, afilenames.per.study[[j]][i]),
                             sep = "\t",
                             header = TRUE,
+                            na.strings = "NA",
                             stringsAsFactors = FALSE,
                             check.names = FALSE)
                })
       })
     names(afiles.per.study) <- sidentifiers
+    for (i in seq_len(length(afiles.per.study))) {
+      names(afiles.per.study[[i]]) <- afilenames.per.study[[i]]
+      rm(i)
+    }
     .Object["assay.files.per.study"] <- afiles.per.study
     ## assay.names
     assay.names <- lapply(X = afiles,
                           FUN = function(i) {
                             i[grep(pattern = isatab.syntax$assay.name,
                                    x = colnames(i))]
-                          })  
+                          })
     .Object["assay.names"] <- assay.names
     ## Assay technology types
     # data frame with types
-    assay.tech.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.technology.type), ] 
+    assay.tech.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.technology.type), -c(1)]
     # remove empty types - results in a list of types
     assay.tech.types <- na.omit(assay.tech.types[assay.tech.types != ""])
-    #remove headers
-    assay.tech.types <- assay.tech.types[assay.tech.types != isatab.syntax$study.assay.technology.type]
+    # strip attributes
+    attributes(assay.tech.types) <- NULL
     ## Validate number of assay technology types == number of afiles
     if (length(assay.tech.types) != length(afiles)) {
-      message("The number of assay files mismatches the number of assay types")
+      message("The number of assay files mismatches the number of assay technology types")
     }    
     .Object["assay.technology.types"] <- assay.tech.types
+    ## Assay technology types per study
+    assay.tech.types.df <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.technology.type), -c(1)]
+    assay.tech.types.list <- split(x = t(unlist(t(assay.tech.types.df))),
+                                   f = row(x = t(unlist(t(assay.tech.types.df))),
+                                           as.factor = TRUE))
+    assay.tech.types.per.study <- lapply(X = seq_len(length(assay.tech.types.list)),
+                                   FUN = function(i) {
+                                     Filter(f = function(j) {
+                                       !is.na(j)
+                                     },
+                                     x = assay.tech.types.list[[i]])
+                                   })
+    names(assay.tech.types.per.study) <- sidentifiers
+    .Object["assay.technology.types.per.study"] <- assay.tech.types.per.study
     ## Assay measurement types
     assay.meas.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.measurement.type), ] 
     assay.meas.types <- na.omit(assay.meas.types[assay.meas.types != ""])
