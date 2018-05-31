@@ -31,6 +31,7 @@ setMethod(
     if (i == "assay.names") return(x@assay.names)
     if (i == "assay.files.per.study") return(x@assay.files.per.study)
     if (i == "assay.technology.types") return(x@assay.technology.types)
+    if (i == "assay.technology.types.per.study") return(x@assay.technology.types.per.study)
     if (i == "assay.measurement.types") return(x@assay.measurement.types)
     if (i == "data.filenames") return(x@data.filenames)
     if (i == "samples") return(x@samples)
@@ -72,6 +73,7 @@ setReplaceMethod(
     if (i == "assay.names") x@assay.names <- value
     if (i == "assay.files.per.study") x@assay.files.per.study <- value
     if (i == "assay.technology.types") x@assay.technology.types <- value
+    if (i == "assay.technology.types.per.study") x@assay.technology.types.per.study <- value
     if (i == "assay.measurement.types") x@assay.measurement.types <- value
     if (i == "data.filenames") x@data.filenames <- value
     if (i == "samples") x@samples <- value
