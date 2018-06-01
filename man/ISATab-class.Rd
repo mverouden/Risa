@@ -77,6 +77,9 @@ for each study in the investigation.}
 \item{\code{assay.measurement.types}}{A character vector whose elements list the
 measurement types for each assay.}
 
+\item{\code{assay.measurement.types.per.study}}{A list object of assay measurement
+types for each study in the investigation.}
+
 \item{\code{data.filenames}}{A list object of data frames, with each data frame
 containing the names of the data files for each sample
 in an assay.}
