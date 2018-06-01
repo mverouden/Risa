@@ -355,10 +355,11 @@ setMethod(
                                            as.factor = TRUE))
     assay.tech.types.per.study <- lapply(X = seq_len(length(assay.tech.types.list)),
                                    FUN = function(i) {
-                                     Filter(f = function(j) {
-                                       !is.na(j)
-                                     },
-                                     x = assay.tech.types.list[[i]])
+                                     Filter(
+                                       f = function(j) {
+                                         !is.na(j)
+                                       },
+                                       x = assay.tech.types.list[[i]])
                                    })
     names(assay.tech.types.per.study) <- sidentifiers
     .Object["assay.technology.types.per.study"] <- assay.tech.types.per.study
@@ -374,10 +375,11 @@ setMethod(
                                            as.factor = TRUE))
     assay.meas.types.per.study <- lapply(X = seq_len(length(assay.meas.types.list)),
                                          FUN = function(i) {
-                                           Filter(f = function(j) {
-                                             !is.na(j)
-                                           },
-                                           x = assay.meas.types.list[[i]])
+                                           Filter(
+                                             f = function(j) {
+                                               !is.na(j)
+                                             },
+                                             x = assay.meas.types.list[[i]])
                                          })
     names(assay.meas.types.per.study) <- sidentifiers
     .Object["assay.measurement.types.per.study"] <- assay.meas.types.per.study
