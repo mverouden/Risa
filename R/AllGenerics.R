@@ -384,21 +384,19 @@ setMethod(
     names(assay.meas.types.per.study) <- sidentifiers
     .Object["assay.measurement.types.per.study"] <- assay.meas.types.per.study
     ## Identifying what sample is studied in which assay
-    ## assays is a list of data frames (one for each assay file)
-    assays <- lapply(X = seq_len(length(sfiles)),
-                     FUN = function(j) {
-                       lapply(X = seq_len(length(afiles)),
-                              FUN = function(i) {
-                                sfiles[[j]]$Sample.Name %in% afiles[[i]]$Sample.Name
-                              })
-                     })
+    # ## assays is a list of data frames (one for each assay file)
+    # assays <- lapply(X = seq_len(length(sfiles)),
+    #                  FUN = function(j) {
+    #                    lapply(X = seq_len(length(afiles)),
+    #                           FUN = function(i) {
+    #                             sfiles[[j]]$Sample.Name %in% afiles[[i]]$Sample.Name
+    #                           })
+    #                  })
     samples <- unique(unlist(lapply(X = sfiles,
                                     FUN = function(i) {
                                       i[, grep(pattern = isatab.syntax$sample.name,
                                                x = colnames(i))]
-                                    })
-                             )
-                      )
+                                    })))
     .Object["samples"] <- samples
     samples.per.assay.filename <- lapply(X = seq_len(length(afiles)),
                                          FUN = function(i) {
