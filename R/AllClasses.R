@@ -51,6 +51,8 @@
 #'                                        for each study in the investigation.
 #' @slot assay.measurement.types A character vector whose elements list the
 #'                               measurement types for each assay.
+#' @slot assay.measurement.types.per.study A list object of assay measurement
+#'                                         types for each study in the investigation.
 #' @slot data.filenames A list object of data frames, with each data frame
 #'                      containing the names of the data files for each sample
 #'                      in an assay.
@@ -108,6 +110,7 @@ ISATab <- setClass(Class = "ISATab",
                      assay.technology.types = "character",
                      assay.technology.types.per.study = "list",
                      assay.measurement.types = "character",
+                     assay.measurement.types.per.study = "list",
                      data.filenames = "list",
                      samples = "character",
                      samples.per.study = "list",

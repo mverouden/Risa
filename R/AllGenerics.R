@@ -33,6 +33,7 @@ setMethod(
     if (i == "assay.technology.types") return(x@assay.technology.types)
     if (i == "assay.technology.types.per.study") return(x@assay.technology.types.per.study)
     if (i == "assay.measurement.types") return(x@assay.measurement.types)
+    if (i == "assay.measurement.types.per.study") return(x@assay.measurement.types.per.study)
     if (i == "data.filenames") return(x@data.filenames)
     if (i == "samples") return(x@samples)
     if (i == "samples.per.study") return(x@samples.per.study)
@@ -75,6 +76,7 @@ setReplaceMethod(
     if (i == "assay.technology.types") x@assay.technology.types <- value
     if (i == "assay.technology.types.per.study") x@assay.technology.types.per.study <- value
     if (i == "assay.measurement.types") x@assay.measurement.types <- value
+    if (i == "assay.measurement.types.per.study") x@assay.measurement.types.per.study <- value
     if (i == "data.filenames") x@data.filenames <- value
     if (i == "samples") x@samples <- value
     if (i == "samples.per.study") x@samples.per.study <- value
@@ -361,10 +363,24 @@ setMethod(
     names(assay.tech.types.per.study) <- sidentifiers
     .Object["assay.technology.types.per.study"] <- assay.tech.types.per.study
     ## Assay measurement types
-    assay.meas.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.measurement.type), ] 
+    assay.meas.types <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.measurement.type), -c(1)]
     assay.meas.types <- na.omit(assay.meas.types[assay.meas.types != ""])
-    assay.meas.types <- assay.meas.types[assay.meas.types != isatab.syntax$study.assay.measurement.type]
+    attributes(assay.meas.types) <- NULL
     .Object["assay.measurement.types"] <- assay.meas.types
+    ## Assay measurement types per study
+    assay.meas.types.df <- ifile[which(ifile[[1]] == isatab.syntax$study.assay.measurement.type), -c(1)]
+    assay.meas.types.list <- split(x = t(unlist(t(assay.meas.types.df))),
+                                   f = row(x = t(unlist(t(assay.meas.types.df))),
+                                           as.factor = TRUE))
+    assay.meas.types.per.study <- lapply(X = seq_len(length(assay.meas.types.list)),
+                                         FUN = function(i) {
+                                           Filter(f = function(j) {
+                                             !is.na(j)
+                                           },
+                                           x = assay.meas.types.list[[i]])
+                                         })
+    names(assay.meas.types.per.study) <- sidentifiers
+    .Object["assay.measurement.types.per.study"] <- assay.meas.types.per.study
     ## Identifying what sample is studied in which assay
     ## assays is a list of data frames (one for each assay file)
     assays <- lapply(X = seq_len(length(sfiles)),
