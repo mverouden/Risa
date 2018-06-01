@@ -217,7 +217,6 @@ setMethod(
         FUN = paste,
         collapse = " ")
       studyContacts[i, ] <- trim(replaceExcess(studyContacts[i, ]))
-      rm(i, maxStudyContacts)
     }
     rownames(studyContacts) <- sidentifiers
     colnames(studyContacts) <- seq(1:ncol(studyContacts))
@@ -326,7 +325,6 @@ setMethod(
     names(afiles.per.study) <- sidentifiers
     for (i in seq_len(length(afiles.per.study))) {
       names(afiles.per.study[[i]]) <- afilenames.per.study[[i]]
-      rm(i)
     }
     .Object["assay.files.per.study"] <- afiles.per.study
     ## assay.names
@@ -412,17 +410,19 @@ setMethod(
     .Object["samples.per.study"] <- samples.per.study
     assay.filenames.per.sample <- list()
     for (k in seq_len(length(samples))) {
+      assay.filenames.per.sample[[k]] <- vector(mode = "character", length = 0)
       for (j in seq_len(length(afilenames))) {
-        if (samples[[k]] %in% afiles[[j]][[isatab.syntax$sample.name]]) {
-          if (length(assay.filenames.per.sample) < k) {
-              assay.filenames.per.sample[[k]] <- list()
-          }
+        if (samples[k] %in% afiles[[j]][[isatab.syntax$sample.name]]) {
           assay.filenames.per.sample[[k]] <- c(assay.filenames.per.sample[[k]],
-                                               afilenames[[j]])
+                                               afilenames[j])
         }
-      }     
-    }                                                                                                                                                                                                                               
-    if (is.null(assay.filenames.per.sample)) {
+      }
+      if (length(assay.filenames.per.sample[[k]]) == 0) {
+        assay.filenames.per.sample[[k]] <- NA
+      }
+    }
+    names(assay.filenames.per.sample) <- samples
+    if (all(is.na(assay.filenames.per.sample))) {
      message("assay.filenames.per.sample not assigned") 
     } else {
       .Object["assay.filenames.per.sample"] <- assay.filenames.per.sample

@@ -65,7 +65,7 @@
 #'                                  assay in the investigation.
 #' @slot assay.filenames.per.sample A list object with the length of the number
 #'                                  of samples used in an investigation, where
-#'                                  each element is a list object of assay
+#'                                  each element is a character vector of assay
 #'                                  filenames in which that particular sample
 #'                                  has been used.
 #' @slot sample.to.rawdatafile  A list object of data frames with samples
