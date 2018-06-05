@@ -462,8 +462,13 @@ setMethod(
     ## List of data filenames with assay filenames as keys
     dfilenames.per.assay <- lapply(X = afiles,
                                    FUN = function(i) {
-                                     i[, grep(pattern = isatab.syntax$data.file,
-                                              x = colnames(i))]
+                                     temp <- as.data.frame(
+                                       i[, grep(pattern = isatab.syntax$data.file,
+                                                x = colnames(i))])
+                                     colnames(temp) <- colnames(i)[
+                                       c(grep(pattern = isatab.syntax$data.file,
+                                              x = colnames(i)))]
+                                     return(temp)
                                    })
     .Object["data.filenames"] <- dfilenames.per.assay
     data.col.names <- lapply(X = seq_len(length(afiles)),
@@ -478,6 +483,7 @@ setMethod(
                                 isatab.syntax$raw.spectral.data.file
                                }
                              })
+    names(data.col.names) <- names(afiles)
     sample.to.rawdatafile <- lapply(X = seq_len(length(afiles)),
                                     FUN = function(i) {
                                       afiles[[i]][, c(isatab.syntax$sample.name, data.col.names[[i]])]
@@ -488,10 +494,14 @@ setMethod(
                                             y = sample.to.rawdatafile[[i]][duplicated(sample.to.rawdatafile[[i]][[isatab.syntax$sample.name]]), ],
                                             all = TRUE)
                                     })
+    names(sample.to.rawdatafile) <- names(afiles)
     .Object@sample.to.rawdatafile <- sample.to.rawdatafile
     sample.to.assayname <- lapply(X = afiles,
                                   FUN = function(i) {
-                                    i[, c(isatab.syntax$sample.name,grep(isatab.syntax$assay.name, colnames(i), value = TRUE))]
+                                    i[, c(isatab.syntax$sample.name,
+                                          grep(pattern = isatab.syntax$assay.name,
+                                               x = colnames(i),
+                                               value = TRUE))]
                                   })
     sample.to.assayname <- lapply(X = seq_len(length(afiles)),
                                   FUN = function(i) {
@@ -499,6 +509,7 @@ setMethod(
                                           y = sample.to.assayname[[i]][duplicated(sample.to.assayname[[i]][[isatab.syntax$sample.name]]), ],
                                           all = TRUE)
                                   })
+    names(sample.to.assayname) <- names(afiles)
     .Object["sample.to.assayname"] <- sample.to.assayname
     rawdatafile.to.sample <- lapply(X = seq_len(length(afiles)),
                                     FUN = function(i) {
@@ -510,7 +521,8 @@ setMethod(
                                             y = rawdatafile.to.sample[[i]][duplicated(rawdatafile.to.sample[[i]][[data.col.names[[i]]]]), ],
                                             all = TRUE)
                                     })
-    .Object@rawdatafile.to.sample <- rawdatafile.to.sample
+    names(rawdatafile.to.sample) <- names(afiles)
+    .Object["rawdatafile.to.sample"] <- rawdatafile.to.sample
     assayname.to.sample <- lapply(X = afiles, 
                                   FUN = function(i) {
                                     i[, c(grep(pattern = isatab.syntax$assay.name,
