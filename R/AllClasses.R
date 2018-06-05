@@ -124,7 +124,7 @@ ISATab <- setClass(Class = "ISATab",
                      treatments = "list", 
                      groups = "list",
                      assay.tabs = "list")
-                    ) 
+                  )
 
 #' @title
 #' S4 Class AssayTab

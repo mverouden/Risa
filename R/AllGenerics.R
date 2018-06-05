@@ -495,7 +495,7 @@ setMethod(
                                             all = TRUE)
                                     })
     names(sample.to.rawdatafile) <- names(afiles)
-    .Object@sample.to.rawdatafile <- sample.to.rawdatafile
+    .Object["sample.to.rawdatafile"] <- sample.to.rawdatafile
     sample.to.assayname <- lapply(X = afiles,
                                   FUN = function(i) {
                                     i[, c(isatab.syntax$sample.name,
@@ -556,9 +556,9 @@ setMethod(
     study.files <- .Object["study.files"]
     factors.list <- list()
     for (i in seq_len(length(study.files))) {
-      if (length(grep(pattern = "Factor.Value",
+      if (length(grep(pattern = isatab.syntax$factor.value,
                       x = colnames(study.files[[i]]))) != 0) {
-        factor.values  <-  study.files[[i]][grep(pattern = "Factor.Value",
+        factor.values  <-  study.files[[i]][grep(pattern = isatab.syntax$factor.value,
                                                  x = colnames(study.files[[i]]))]
         factors.list[[i]] <- lapply(X = factor.values,
                                     FUN = factor)
@@ -569,7 +569,8 @@ setMethod(
                 study.filenames[[i]],
                 ". Factors slot will be an empty list for that study.")
       }
-    }           
+    }
+    names(factors.list) <- names(study.files)
     .Object["factors"] <- factors.list
     return(.Object)
   })
