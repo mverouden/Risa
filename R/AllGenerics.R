@@ -616,6 +616,9 @@ setMethod(
       for (j in seq_len(length(study.files))) {
         subgroups <- list()
         if (class(treatments[[j]]) == "factor") {
+          ## TO BE CHECKED
+          ## Will this part ever be executed? By default elements of the treatments
+          ## list are data.frames
           for (i in seq_len(length(levels(treatments[[j]])))) {
             treatment <- treatments[[j]][[i]]
             listtr <- rep(treatment, each = length(samples.per.study[[j]]))
@@ -637,11 +640,12 @@ setMethod(
                                                            FUN = all)]
           }
           groups[[j]] <- subgroups
-        }            
+        }
       }
     } else {
       message("Groups slot will be an empty list")
-    }    
+    }
+    names(groups) <- names(study.files)
     .Object["groups"] <- groups
     return(.Object)
   })
