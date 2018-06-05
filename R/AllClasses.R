@@ -120,11 +120,10 @@ ISATab <- setClass(Class = "ISATab",
                      sample.to.assayname = "list",
                      rawdatafile.to.sample = "list",
                      assayname.to.sample = "list",
-                     factors = "list", 
-                     treatments = "list", 
+                     factors = "list",
+                     treatments = "list",
                      groups = "list",
-                     assay.tabs = "list")
-                  )
+                     assay.tabs = "list"))
 
 #' @title
 #' S4 Class AssayTab

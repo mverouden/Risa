@@ -597,10 +597,6 @@ setMethod(
                            FUN = function(factors.df) {
                              factors.df[!duplicated(factors.df), ]
                            })
-      names(treatments) <- sapply(X = factors.df.list,
-                                  FUN = function(x) {
-                                    paste(colnames(x), collapse = ' ')
-                                  })
     }
     .Object["treatments"] <- treatments
     return(.Object)
