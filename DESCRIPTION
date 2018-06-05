@@ -15,11 +15,12 @@ Description: The Investigation / Study / Assay (ISA) tab-delimited format is a
     The package is extendable and efforts are undergoing to support metadata associated
     to proteomics assays.
 Author:
-    Alejandra Gonzalez-Beltran,
-    Audrey Kauffmann,
-    Steffen Neumann,
-    Gabriella Rustici,
-    ISA Team
+    Alejandra Gonzalez-Beltran [aut, cre, ctb],
+    Audrey Kauffmann [ctb],
+    Steffen Neumann [ctb],
+    Gabriella Rustici [ctb],
+    ISA Team [cph],
+    Maikel Verouden [ctb]
 Maintainer: Alejandra Gonzalez-Beltran <alejandra.gonzalez.beltran@gmail.com>
 Encoding: UTF-8
 Depends: 
