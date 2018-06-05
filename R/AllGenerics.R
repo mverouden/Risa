@@ -540,6 +540,7 @@ setMethod(
                                                                                                                     value = TRUE))]), ],
                                           all = TRUE)
                                   })
+    names(assayname.to.sample) <- names(afiles)
     .Object["assayname.to.sample"] <- assayname.to.sample
     return(.Object)
   })
