@@ -174,7 +174,7 @@ AssayTab <- setClass(Class = "AssayTab",
                      )
 
 validMSAssayTabObject <- function(object) {
-  if (object@assay.technology.type == "mass spectrometry") {
+  if (object@assay.technology.type == technology.types$ms) {
     TRUE
   } else {
     paste("Technology type is not 'mass spectrometry' for ",
@@ -185,7 +185,7 @@ validMSAssayTabObject <- function(object) {
 
 MSAssayTab <- setClass(Class = "MSAssayTab",
                        representation(),
-                       prototype(assay.technology.type = "mass spectrometry"),
+                       prototype(assay.technology.type = technology.types$ms),
                        contains = "AssayTab",
                        validity = validMSAssayTabObject)
 
@@ -201,16 +201,16 @@ validMicroarrayAssayTabObject <- function(object) {
 
 MicroarrayAssayTab <- setClass(Class = "MicroarrayAssayTab",
                                representation(),
-                               prototype(assay.technology.type = "DNA microarray"),
+                               prototype(assay.technology.type = technology.types$microarray),
                                contains = "AssayTab",
                                validity = validMicroarrayAssayTabObject)
 
 SeqAssayTab <- setClass(Class = "SeqAssayTab",
                         representation(),
-                        prototype(assay.technology.type = "nucleotide sequencing"),
+                        prototype(assay.technology.type = technology.types$seq),
                         contains = "AssayTab")
 
 NMRAssayTab <- setClass(Class = "NMRAssayTab",
                         representation(),
-                        prototype(assay.technology.type = "NMR spectroscopy"),
+                        prototype(assay.technology.type = technology.types$nmr),
                         contains = "AssayTab")

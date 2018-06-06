@@ -678,7 +678,7 @@ setMethod(
                       x = colnames(afiles[[i]]))
         colnames(data.filenames[[i]]) <- colnames(afiles[[i]])[index]
       }
-      if (assay.tech.types[i] == technology.types[["microarray"]]) {
+      if (assay.tech.types[i] == technology.types$microarray) {
         atabs[[i]] <- new(Class = "MicroarrayAssayTab",
                           path = .Object["path"],
                           study.filename = study.filename,
@@ -689,7 +689,7 @@ setMethod(
                           assay.measurement.type = assay.meas.types[i],
                           assay.names = assay.names[[i]],
                           data.filenames = data.filenames[[i]])
-      } else if (assay.tech.types[i] == technology.types[["ms"]]) {
+      } else if (assay.tech.types[i] == technology.types$ms) {
         atabs[[i]] <- new(Class = "MSAssayTab",
                           path = .Object["path"],
                           study.filename = study.filename,
@@ -700,7 +700,7 @@ setMethod(
                           assay.measurement.type = assay.meas.types[i],
                           assay.names = assay.names[[i]],
                           data.filenames = data.filenames[[i]])
-      } else if (assay.tech.types[i] == technology.types[["nmr"]]) {
+      } else if (assay.tech.types[i] == technology.types$nmr) {
         atabs[[i]] <- new(Class = "NMRAssayTab",
                           path = .Object["path"],
                           study.filename = study.filename,
