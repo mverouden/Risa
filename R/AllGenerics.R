@@ -660,11 +660,7 @@ setMethod(
   definition = function(.Object) {
     atabs <- list()
     afiles <- .Object["assay.files"]
-    assay.names <- lapply(X = afiles,
-                          FUN = function(i) {
-                            i[grep(pattern = isatab.syntax$assay.name,
-                                   x = colnames(i))]
-                          })
+    assay.names <- .Object["assay.names"]
     assay.filenames <- .Object["assay.filenames"]
     assay.tech.types <- .Object["assay.technology.types"]
     assay.meas.types <- .Object["assay.measurement.types"]
@@ -673,46 +669,46 @@ setMethod(
     study.identifiers <- .Object["study.identifiers"]
     for (i in seq_len(length(assay.filenames))) {
       k <- getStudyFilenameIndex(isa = .Object,
-                                 assay.filename = assay.filenames[[i]])
-      study.filename <- study.filenames[[k]]
-      study.identifier <- study.identifiers[[k]]
+                                 assay.filename = assay.filenames[i])
+      study.filename <- study.filenames[k]
+      study.identifier <- study.identifiers[k]
       if (class(data.filenames[[i]]) != "data.frame") {
         data.filenames[[i]] <- as.data.frame(data.filenames[[i]])
         index <- grep(pattern = "Data File",
                       x = colnames(afiles[[i]]))
-        colnames(data.filenames[[i]]) <- colnames(afiles[[i]])[[index]]
+        colnames(data.filenames[[i]]) <- colnames(afiles[[i]])[index]
       }
-      if (assay.tech.types[[i]] == "mass spectrometry") {
-        atabs[[i]] <- new(Class = "MSAssayTab",
-                          path = .Object["path"],
-                          study.filename = study.filename,
-                          study.identifier = study.identifier,
-                          assay.filename = assay.filenames[[i]],
-                          assay.file = afiles[[i]],
-                          assay.technology.type = assay.tech.types[[i]],
-                          assay.measurement.type = assay.meas.types[[i]],
-                          assay.names = assay.names[[i]],
-                          data.filenames = data.filenames[[i]])
-      } else if (assay.tech.types[[i]] == "DNA microarray") {
+      if (assay.tech.types[i] == technology.types[["microarray"]]) {
         atabs[[i]] <- new(Class = "MicroarrayAssayTab",
                           path = .Object["path"],
                           study.filename = study.filename,
                           study.identifier = study.identifier,
-                          assay.filename = assay.filenames[[i]],
+                          assay.filename = assay.filenames[i],
                           assay.file = afiles[[i]],
-                          assay.technology.type = assay.tech.types[[i]],
-                          assay.measurement.type = assay.meas.types[[i]],
+                          assay.technology.type = assay.tech.types[i],
+                          assay.measurement.type = assay.meas.types[i],
                           assay.names = assay.names[[i]],
                           data.filenames = data.filenames[[i]])
-      } else if (assay.tech.types[[i]] == "NMR spectroscopy") {
+      } else if (assay.tech.types[i] == technology.types[["ms"]]) {
+        atabs[[i]] <- new(Class = "MSAssayTab",
+                          path = .Object["path"],
+                          study.filename = study.filename,
+                          study.identifier = study.identifier,
+                          assay.filename = assay.filenames[i],
+                          assay.file = afiles[[i]],
+                          assay.technology.type = assay.tech.types[i],
+                          assay.measurement.type = assay.meas.types[i],
+                          assay.names = assay.names[[i]],
+                          data.filenames = data.filenames[[i]])
+      } else if (assay.tech.types[i] == technology.types[["nmr"]]) {
         atabs[[i]] <- new(Class = "NMRAssayTab",
                           path = .Object["path"],
                           study.filename = study.filename,
                           study.identifier = study.identifier,
-                          assay.filename = assay.filenames[[i]],
+                          assay.filename = assay.filenames[i],
                           assay.file = afiles[[i]],
-                          assay.technology.type = assay.tech.types[[i]],
-                          assay.measurement.type = assay.meas.types[[i]],
+                          assay.technology.type = assay.tech.types[i],
+                          assay.measurement.type = assay.meas.types[i],
                           assay.names = assay.names[[i]],
                           data.filenames = data.filenames[[i]])
       } else {
@@ -720,10 +716,10 @@ setMethod(
                           path = .Object["path"],
                           study.filename = study.filename,
                           study.identifier = study.identifier,
-                          assay.filename = assay.filenames[[i]],
+                          assay.filename = assay.filenames[i],
                           assay.file = afiles[[i]],
-                          assay.technology.type = assay.tech.types[[i]],
-                          assay.measurement.type = assay.meas.types[[i]],
+                          assay.technology.type = assay.tech.types[i],
+                          assay.measurement.type = assay.meas.types[i],
                           assay.names = assay.names[[i]],
                           data.filenames = data.filenames[[i]])
       }
