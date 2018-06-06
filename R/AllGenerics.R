@@ -723,7 +723,7 @@ setMethod(
                           assay.names = assay.names[[i]],
                           data.filenames = data.filenames[[i]])
       }
-    }# End for loop
+    }
     .Object["assay.tabs"] <- atabs
     return(.Object)
   })
