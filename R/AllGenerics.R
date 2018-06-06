@@ -1,5 +1,5 @@
 ## ISATab-class
-## get
+## get slots of an ISATab-class object
 #' @title 
 #' Extract methods 
 #'
@@ -48,7 +48,7 @@ setMethod(
     if (i == "groups") return(x@groups)
     if (i == "assay.tabs") return(x@assay.tabs)
   }) 
-## set
+## set slots of an ISATab-class object
 #' @name [
 #' @aliases [<-,ISATab-method
 #' @docType methods
@@ -94,7 +94,7 @@ setReplaceMethod(
   })
 
 ## AssayTab-class
-## get
+## get slots of an AssayTab-class object 
 #' extract slots from an object of class \linkS4class{AssayTab}.
 #'
 #' @name [
@@ -109,7 +109,7 @@ setMethod(
     if (i == "data.filenames") return(x@data.filenames)
   }) 
 
-## set
+## set slots of an AssayTab class object
 #' @name [
 #' @aliases [<-,AssayTab-method
 #' @docType methods
