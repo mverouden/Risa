@@ -33,11 +33,11 @@ isatab.syntax <- list(
 
 ### start technology.types list ----
 technology.types <- list(
+  fc = "flow cytometry",
   microarray = "DNA microarray",
   ms = "mass spectrometry",
-  fc = "flow cytometry",
-  seq = "nucleotide sequencing",
-  nmr = "NMR spectroscopy")
+  nmr = "NMR spectroscopy",
+  seq = "nucleotide sequencing")
 ### end technology.types list ----
 
 ### Remove all excessive fronting and trailing whitespace characters in a string
