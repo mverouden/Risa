@@ -3,7 +3,7 @@ Type: Package
 Date: 2013-08-15
 Title: 
     Converting experimental metadata from ISA-tab into Bioconductor data structures
-Version: 1.15.1
+Version: 1.23.0
 Description: The Investigation / Study / Assay (ISA) tab-delimited format is a
     general purpose framework with which to collect and communicate complex metadata
     (i.e. sample characteristics, technologies used, type of measurements made)
@@ -20,7 +20,7 @@ Author:
     Steffen Neumann [ctb],
     Gabriella Rustici [ctb],
     ISA Team [cph],
-    Maikel Verouden [ctb]
+    Maikel Verouden [aut, ctb]
 Maintainer: Alejandra Gonzalez-Beltran <alejandra.gonzalez.beltran@gmail.com>
 Encoding: UTF-8
 Depends: 
