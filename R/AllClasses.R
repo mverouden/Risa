@@ -185,7 +185,7 @@ validMSAssayTabObject <- function(object) {
 
 MSAssayTab <- setClass(Class = "MSAssayTab",
                        representation(),
-                       prototype(assay.technology.type = technology.types$ms),
+                       prototype(assay.technology.type = "mass spectrometry"),
                        contains = "AssayTab",
                        validity = validMSAssayTabObject)
 
@@ -201,16 +201,16 @@ validMicroarrayAssayTabObject <- function(object) {
 
 MicroarrayAssayTab <- setClass(Class = "MicroarrayAssayTab",
                                representation(),
-                               prototype(assay.technology.type = technology.types$microarray),
+                               prototype(assay.technology.type = "DNA microarray"),
                                contains = "AssayTab",
                                validity = validMicroarrayAssayTabObject)
 
 SeqAssayTab <- setClass(Class = "SeqAssayTab",
                         representation(),
-                        prototype(assay.technology.type = technology.types$seq),
+                        prototype(assay.technology.type = "nucleotide sequencing"),
                         contains = "AssayTab")
 
 NMRAssayTab <- setClass(Class = "NMRAssayTab",
                         representation(),
-                        prototype(assay.technology.type = technology.types$nmr),
+                        prototype(assay.technology.type = "NMR spectroscopy"),
                         contains = "AssayTab")
