@@ -10,7 +10,7 @@ getMicroarrayAssayFilenames(isa)
 \item{isa}{An object of the \code{\link{ISATab-class}}.}
 }
 \value{
-a list of assay filenames.
+a character vector with microarray-based assay filenames.
 }
 \description{
 Given an object of class \linkS4class{ISATab}, this method retrieves the list
