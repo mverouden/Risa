@@ -1,4 +1,4 @@
-bioconductor.version <- 3.1 # suggested change into BiocInstaller::biocVersion()
+bioconductor.version <- 3.1 # suggested change into as.double(as.character(BiocInstaller::biocVersion()))
 getPackagesInBiocView <- function(view, 
                                   reposUrl = c("BiocSoftware", "BiocAnnotationData", "BiocExperimentData"),
                                   biocVersion = bioconductor.version) {
