@@ -6,7 +6,7 @@
 #'
 #' @param isa An object of the \code{\link{ISATab-class}}.
 #' 
-#' @return a list of assay filenames.
+#' @return a character vector with microarray-based assay filenames.
 #'
 #' @author 
 #' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
@@ -101,18 +101,19 @@ isMicroarrayAssay <- function(isa, assay.filename) {
 #' @export
 getMIAMEMetadata <- function(isa, assay.filename) {
   if (isMicroarrayAssay(isa, assay.filename)) {
-    i <- which(names(isa["assay.files"]) == assay.filename)
+    ## Determine which study in the investigation contains th MicroarrayAssay
     j <- which(lapply(X = isa["assay.filenames.per.study"],
                       FUN = function(x) {
                         (assay.filename %in% x)
                       }) == TRUE)
+    ## Create the MIAME-class object
     my.desc <- new(Class = "MIAME",
                    name = isa@study.identifiers[[j]],
-                   lab = isa@study.contacts.affiliations,
-                   contact = isa@study.contacts,
-                   title = isa@study.titles[[j]],
-                   abstract = isa@study.descriptions[[j]],
-                   samples = as.list(isa@samples))
+                   lab = isa["study.contacts.affiliations"][isa["study.identifiers"][j], ][!is.na(isa["study.contacts.affiliations"][isa["study.identifiers"][j], ])],
+                   contact = isa["study.contacts"][isa["study.identifiers"][j], ][!is.na(isa["study.contacts"][isa["study.identifiers"][j], ])],
+                   title = isa["study.titles"][j],
+                   abstract = isa["study.descriptions"][j],
+                   samples = isa["samples.per.assay.filename"][assay.filename])
     return(my.desc)
   } else {
     message("The assay is not a Microarray assay, so the MIAME metadata cannot be built")
