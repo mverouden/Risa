@@ -609,6 +609,7 @@ setMethod(
   signature = c(.Object = "ISATab"),
   definition = function(.Object) {
     treatments <- .Object["treatments"]
+    factors <- .Object["factors"]
     study.files <- .Object["study.files"]
     samples.per.study <- .Object["samples.per.study"]
     groups <- list()
@@ -616,13 +617,10 @@ setMethod(
       for (j in seq_len(length(study.files))) {
         subgroups <- list()
         if (class(treatments[[j]]) == "factor") {
-          ## TO BE CHECKED
-          ## Will this part ever be executed? By default elements of the treatments
-          ## list are data.frames
           for (i in seq_len(length(levels(treatments[[j]])))) {
             treatment <- treatments[[j]][[i]]
             listtr <- rep(treatment, each = length(samples.per.study[[j]]))
-            subgroups[[i]] <- samples.per.study[[j]][apply(X = study.files[[j]][names(treatments)[[j]]] == as.data.frame(listtr),
+            subgroups[[i]] <- samples.per.study[[j]][apply(X = study.files[[j]][[names(factors[[j]])]] == as.data.frame(listtr),
                                                            MARGIN = 1,
                                                            FUN = all)]
             groups[[j]] <- subgroups
