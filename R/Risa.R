@@ -116,7 +116,7 @@ readISAtab <- function(path = getwd(),
 }
 
 ### This function only works if the zip file does not contain a directory (but the ISA-TAB files themselves)
-readISAtabZip <- function(zip, path = getwd(), verbose=FALSE) {
+readISAtabZip <- function(zip, path = getwd(), verbose = FALSE) {
   if (verbose) {
     base::message("Unzipping file in directory ", path)
   }
@@ -128,9 +128,9 @@ readISAtabZip <- function(zip, path = getwd(), verbose=FALSE) {
   return(isaobj)
 }
 
-readISAtabFiles <- function(path = getwd(), verbose=FALSE) {
+readISAtabFiles <- function(path = getwd(), verbose = FALSE) {
   if (verbose) {
-    message("Converting ISA-Tab dataset at ",path," into R objects...")
+    message("Converting ISA-Tab dataset at ", path, " into R objects...")
   }
   isaobject <- new(Class = "ISATab", path = path)
   if (verbose) {
