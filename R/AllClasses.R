@@ -205,10 +205,30 @@ MicroarrayAssayTab <- setClass(Class = "MicroarrayAssayTab",
                                contains = "AssayTab",
                                validity = validMicroarrayAssayTabObject)
 
+validSeqAssayTabObject <- function(object) {
+  if (object@assay.technology.type == technology.types$seq) {
+    return(TRUE)
+  } else {
+    return(paste("Technology type is not 'nucleotide sequencing' for ",
+                 object,
+                 sep = ""))
+  }
+}
+
 SeqAssayTab <- setClass(Class = "SeqAssayTab",
                         representation(),
                         prototype(assay.technology.type = "nucleotide sequencing"),
                         contains = "AssayTab")
+
+validNMRAssayTabObject <- function(object) {
+  if (object@assay.technology.type == technology.types$nmr) {
+    return(TRUE)
+  } else {
+    return(paste("Technology type is not 'NMR spectroscopy' for ",
+                 object,
+                 sep = ""))
+  }
+}
 
 NMRAssayTab <- setClass(Class = "NMRAssayTab",
                         representation(),
