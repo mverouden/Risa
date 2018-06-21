@@ -743,7 +743,7 @@ setMethod(
 #'                  should be retrieved with their full path [default: TRUE],
 #'                  or not (FALSE).
 #'
-#' @return 
+#' @return list of matrices (one matrix per assay file) containing the raw data filenames
 #'
 #' @export
 setGeneric(name = "getRawDataFilenames",
