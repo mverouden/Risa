@@ -188,7 +188,7 @@ write.ISAtab(isa = faahkoISA,
 
 \section*{Session Info}
 %
-<<label="pkgs", echo=FALSE, eval=TRUE, results='tex'>>=
+<<label="pkgs", echo=FALSE, eval=TRUE, results=tex>>=
 toLatex(sessionInfo())
 @
 %
