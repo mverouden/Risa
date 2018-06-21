@@ -122,9 +122,11 @@ isMSAssay <- function(isa, assay.filename) {
 #' @seealso \code{\link{readISAtab}}
 #' 
 #' @examples
-#' faahkoISA <- readISAtab(find.package("faahKO"))
+#' faahkoISA <- readISAtab(path = find.package("faahKO"),
+#'                         verbose = TRUE)
 #' assay.filename <- faahkoISA["assay.filenames"][[1]]
-#' xset <- processAssayXcmsSet(faahkoISA, assay.filename)
+#' xset <- processAssayXcmsSet.1factor(isa = faahkoISA,
+#'                                     assay.filename = assay.filename)
 #'
 #' @export
 processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
@@ -193,9 +195,11 @@ processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
 #' @seealso \code{\link{readISAtab}}
 #' 
 #' @examples
-#' faahkoISA <- readISAtab(find.package("faahKO"))
+#' faahkoISA <- readISAtab(path = find.package("faahKO"),
+#'                         verbose = TRUE)
 #' assay.filename <- faahkoISA["assay.filenames"][[1]]
-#' xset <- processAssayXcmsSet(faahkoISA, assay.filename)
+#' xset <- processAssayXcmsSet(isa = faahkoISA,
+#'                             assay.filename = assay.filename)
 #'
 #' @export
 processAssayXcmsSet <- function(isa, assay.filename, ...) {
