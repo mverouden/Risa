@@ -145,7 +145,7 @@ processAssayXcmsSet.1factor <- function(isa, assay.filename, ...) {
                                                varMetadata.char = "$",
                                                quote = "\""))
     ## Adding the raw spectral data files as the row names
-    sampleNames(pd) = pd$Raw.Spectral.Data.File
+    sampleNames(pd) <- pd$Raw.Spectral.Data.File
     if (length(grep(pattern = isatab.syntax$factor.value,
                     x = colnames(isa["assay.files"][[i]]))) != 0) {
       ## If there are explicit factors, use the first one of them
