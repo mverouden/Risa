@@ -26,9 +26,11 @@ the xcmsSet object built from the assay metadata, considering all the
 object and one of its assay filenames.
 }
 \examples{
-faahkoISA <- readISAtab(find.package("faahKO"))
+faahkoISA <- readISAtab(path = find.package("faahKO"),
+                        verbose = TRUE)
 assay.filename <- faahkoISA["assay.filenames"][[1]]
-xset <- processAssayXcmsSet(faahkoISA, assay.filename)
+xset <- processAssayXcmsSet(isa = faahkoISA,
+                            assay.filename = assay.filename)
 
 }
 \seealso{
