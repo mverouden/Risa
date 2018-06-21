@@ -14,7 +14,7 @@ should be retrieved with their full path [default: TRUE],
 or not (FALSE).}
 }
 \value{
-
+list of matrices (one matrix per assay file) containing the raw data filenames
 }
 \description{
 Retrieves the raw data filenames in an ISATab dataset given an object from
