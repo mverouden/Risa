@@ -70,6 +70,9 @@
 #' @import biocViews
 #' @import methods
 #' @importFrom xcms xcmsSet
+#' @importFrom("stats", "na.omit")
+#' @importFrom("utils", "count.fields", "data", "read.csv", "read.table",
+#'             "write.table")
 #'
 #' @docType package
 #' @name Risa
