@@ -30,18 +30,13 @@ an example of use for a metabolite dataset at \url{https://github.com/sneumann/m
 \examples{
 ### This example shows how to add values to the column "Derived Spectral Data File",
 ### assuming that the results are stored in the file "faahkoDSDF.txt"
-faahkoISA <- readISAtab(find.package("faahKO"))
-assay.filename <- faahkoISA["assay.filenames"][[1]]
+faahkoISA <- readISAtab(path = find.package("faahKO"),
+                        verbose = TRUE)
+assay.filename <- faahkoISA["assay.filenames"][1]
 faahkoISA <- updateAssayMetadata(isa = faahkoISA,
                                  assay.filename,
                                  col.name = "Derived Spectral Data File",
                                  values = "faahkoDSDF.txt")
-### to propagate the modification to all slots
-temp <- tempdir()
-write.ISAtab(isa = faahkoISA,
-             path = temp)
-faahkoISA <- readISAtab(path = temp,
-                        verbose = TRUE)
 
 }
 \seealso{
