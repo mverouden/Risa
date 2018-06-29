@@ -447,6 +447,10 @@ setMethod(
   definition = function(.Object, assay.filename, assay.file) {
     .Object["assay.files"][[assay.filename]] <- assay.file
     .Object <- setAssayDependentSlots(.Object)
+    .Object <- setAssayTabs(.Object)
+    studyName <- names(which(.Object["assay.filenames.per.study"] == assay.filename))
+    assayNumber <- which(.Object["assay.filenames.per.study"] == assay.filename)
+    .Object["assay.files.per.study"][[studyName]][[assayNumber]] <- assay.file
     return(.Object)
   })
 
