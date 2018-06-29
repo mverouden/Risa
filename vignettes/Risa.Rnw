@@ -187,11 +187,9 @@ write.ISAtab(isa = faahkoISA,
 
 
 \section*{Session Info}
-%
 <<label="pkgs", echo=FALSE, eval=TRUE, results=tex>>=
-toLatex(sessionInfo())
+toLatex(sessionInfo(), locale = TRUE)
 @
-%
 
 \section*{Further information}
 For further information about the ISA software infrastructure, please visit our website http://isa-tools.org.
