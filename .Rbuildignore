@@ -8,3 +8,5 @@
 ^\.travis\.yml$     # Used for continuous integration testing with travis
 ^appveyor\.yml$     # Used for continuous integration testing with appveyor
 ^codecov\.yml$      # Used for coverage monitoring with Codecov
+original_NAMESPACE
+TODO
