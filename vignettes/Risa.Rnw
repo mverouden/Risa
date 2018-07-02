@@ -92,7 +92,8 @@ require(faahKO)
 Then, we read the ISA-Tab data set from the \emph{faahKO} package:
 
 <<label="Risa-readISAtab", echo=TRUE, eval=TRUE>>=
-faahkoISA <- readISAtab(path = find.package("faahKO"))
+faahkoISA <- readISAtab(path = find.package("faahKO"),
+                        verbose = TRUE)
 @
 
 The object \Robject{faahkoISA} belongs to the \Rclass{ISAtab} class, and contains the following elements:
