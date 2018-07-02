@@ -28,7 +28,7 @@ faahkoISA <- readISAtab(path = file.path(data.dir, "faahKOISA"),
                         verbose = TRUE)
 temp <- tempdir()
 write.ISAtab(isa = faahkoISA,
-             paht = temp)
+             path = temp)
 
 }
 \seealso{
