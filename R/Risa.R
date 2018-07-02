@@ -211,7 +211,7 @@ updateAssayMetadata <- function(isa, assay.filename, col.name, values) {
 #'                         verbose = TRUE)
 #' temp <- tempdir()
 #' write.ISAtab(isa = faahkoISA,
-#'              paht = temp)
+#'              path = temp)
 #'
 #' @seealso 
 #' \code{\link{write.investigation.file}}, \code{\link{write.study.file}},
