@@ -1,10 +1,11 @@
 ### To exclude files from being put into the package
-^.*\.Rproj$         # Automatically added by RStudio,
-^\.Rproj\.user$     # used for temporary files.
-^.*\.gitkeep$       # File to kee empty folders
-^README\.Rmd$       # An Rmarkdown file used to generate README.md
-^cran-comments\.md$ # Comments for CRAN submission
-^NEWS\.md$          # A news file written in Markdown
-^\.travis\.yml$     # Used for continuous integration testing with travis
-^appveyor\.yml$     # Used for continuous integration testing with appveyor
-^codecov\.yml$      # Used for coverage monitoring with Codecov
+^.*\.Rproj$
+^\.Rproj\.user$
+^.*\.gitkeep$
+^cran-comments\.md$
+^NEWS\.md$
+^\.travis\.yml$
+^appveyor\.yml$
+^codecov\.yml$
+^README\.Rmd$
+^Risa_(GITHUB)\.Rproj$

@@ -7,7 +7,7 @@
 #' extract slots from an object of class \linkS4class{ISATab}.
 #'
 #' @name [
-#' @aliases [,ISATab-method
+#' @aliases [ ISATab-method
 #' @docType methods
 #' @rdname extract-methods
 setMethod(
@@ -50,7 +50,7 @@ setMethod(
   }) 
 ## set slots of an ISATab-class object
 #' @name [
-#' @aliases [<-,ISATab-method
+#' @aliases [<- ISATab-method
 #' @docType methods
 #' @rdname extract-methods
 setReplaceMethod(
@@ -98,7 +98,7 @@ setReplaceMethod(
 #' extract slots from an object of class \linkS4class{AssayTab}.
 #'
 #' @name [
-#' @aliases [,AssayTab-method
+#' @aliases [ AssayTab-method
 #' @docType methods
 #' @rdname extract-methods
 setMethod(
@@ -111,7 +111,7 @@ setMethod(
 
 ## set slots of an AssayTab class object
 #' @name [
-#' @aliases [<-,AssayTab-method
+#' @aliases [<- AssayTab-method
 #' @docType methods
 #' @rdname extract-methods
 setReplaceMethod(
@@ -123,6 +123,11 @@ setReplaceMethod(
     return(x)
   })
 
+#' Constructor method of ISATab Class.
+#'
+#' @name ISATab
+#' @rdname ISATab-class
+#' @aliases ISATab-initialize
 setMethod(
   f = "initialize",
   signature = "ISATab",

@@ -88,7 +88,9 @@
 #'                  MicroarrayAssayTab), representing the information of each of
 #'                  the assay files in the investigation.
 #'
-#' @export
+#' @name ISATab-class
+#' @rdname ISATab-class
+#' @exportClass ISATab
 ISATab <- setClass(Class = "ISATab",
                    slots = c(
                      path = "character",
@@ -158,6 +160,9 @@ ISATab <- setClass(Class = "ISATab",
 #'
 #' @keywords classes
 #'
+#' @name AssayTab-class
+#' @rdname AssayTab-class
+#' @exportClass AssayTab
 #' @seealso \code{\link{ISATab-class}}, \code{\link{ISATab-method}}
 #' @aliases MSAssayTab, MicroarrayAssayTab, SeqAssayTab, NMRAssayTab
 AssayTab <- setClass(Class = "AssayTab",
@@ -183,6 +188,7 @@ validMSAssayTabObject <- function(object) {
   }
 }
 
+#' @rdname AssayTab-class
 MSAssayTab <- setClass(Class = "MSAssayTab",
                        representation(),
                        prototype(assay.technology.type = "mass spectrometry"),
@@ -199,6 +205,7 @@ validMicroarrayAssayTabObject <- function(object) {
   }
 }
 
+#' @rdname AssayTab-class
 MicroarrayAssayTab <- setClass(Class = "MicroarrayAssayTab",
                                representation(),
                                prototype(assay.technology.type = "DNA microarray"),
@@ -215,6 +222,7 @@ validSeqAssayTabObject <- function(object) {
   }
 }
 
+#' @rdname AssayTab-class
 SeqAssayTab <- setClass(Class = "SeqAssayTab",
                         representation(),
                         prototype(assay.technology.type = "nucleotide sequencing"),
@@ -230,6 +238,7 @@ validNMRAssayTabObject <- function(object) {
   }
 }
 
+#' @rdname AssayTab-class
 NMRAssayTab <- setClass(Class = "NMRAssayTab",
                         representation(),
                         prototype(assay.technology.type = "NMR spectroscopy"),

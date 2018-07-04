@@ -3,13 +3,15 @@
 \docType{methods}
 \name{[}
 \alias{[}
-\alias{[,ISATab-method}
+\alias{ISATab-method}
 \alias{[}
-\alias{[<-,ISATab-method}
+\alias{[<-}
+\alias{ISATab-method}
 \alias{[}
-\alias{[,AssayTab-method}
+\alias{AssayTab-method}
 \alias{[}
-\alias{[<-,AssayTab-method}
+\alias{[<-}
+\alias{AssayTab-method}
 \title{Extract methods}
 \usage{
 \S4method{[}{ISATab,ANY,ANY,ANY}(x, i, j, drop)

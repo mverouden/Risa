@@ -194,7 +194,9 @@ getMicroarrayDerivedDataFilenamesAssay <- function(isa, assay.filename, full.pat
 #'                "GSM510387_SA2006121428.CEL", "GSM510388_SA2006121429.CEL",
 #'                "GSM510389_SA2006121440.CEL", "GSM510390_SA2006121441.CEL",
 #'                "GSM510391_SA2006121442.CEL")
-#' base.url <- "http://perdera.sph.harvard.edu/biidata/microarray/study_ARMSTRONG-S-3_3Zd4KeJNJ7/raw_data/"
+#'
+#' ### Webadress not active anymore!!
+#' # base.url <- "http://perdera.sph.harvard.edu/biidata/microarray/study_ARMSTRONG-S-3_3Zd4KeJNJ7/raw_data/"
 #'
 #' ### download all the cel files
 #' ### this is commented out, uncomment the following two lines if you want to build the expression set

@@ -33,7 +33,7 @@ write.study.file(isa = faahkoISA,
 
 }
 \seealso{
-\code{\link{write.ISAtab}}, \code{\link{write.investigation.fle}},
+\code{\link{write.ISAtab}}, \code{\link{write.investigation.file}},
 \code{\link{write.assay.file}} \code{\link{readISAtab}}
 }
 \author{

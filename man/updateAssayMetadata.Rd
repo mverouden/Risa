@@ -21,7 +21,7 @@ values (whose length must match the number of rows of the assay
 file).}
 }
 \value{
-An updated object from the \code{\link{ISAtab-class}}.
+An updated object from the \code{\link{ISATab-class}}.
 }
 \description{
 \code{updataAssayMetadata}: Updates metadata into a particular assay file. See

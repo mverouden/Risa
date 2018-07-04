@@ -156,7 +156,7 @@ readISAtabFiles <- function(path = getwd(), verbose = FALSE) {
 #'               values (whose length must match the number of rows of the assay
 #'               file).
 #'
-#' @return An updated object from the \code{\link{ISAtab-class}}.
+#' @return An updated object from the \code{\link{ISATab-class}}.
 #'
 #' @author 
 #' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
@@ -292,7 +292,7 @@ write.investigation.file <- function(isa, path = getwd()) {
 #'                  path = temp)
 #'
 #' @seealso
-#' \code{\link{write.ISAtab}}, \code{\link{write.investigation.fle}},
+#' \code{\link{write.ISAtab}}, \code{\link{write.investigation.file}},
 #' \code{\link{write.assay.file}} \code{\link{readISAtab}}
 #'
 #' @export
