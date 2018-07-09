@@ -4,23 +4,31 @@
 \name{[}
 \alias{[}
 \alias{ISATab-method}
+\alias{ANY}
+\alias{ANY-method}
 \alias{[}
 \alias{[<-}
 \alias{ISATab-method}
+\alias{ANY}
+\alias{ANY-method}
 \alias{[}
 \alias{AssayTab-method}
+\alias{ANY}
+\alias{ANY-method}
 \alias{[}
 \alias{[<-}
 \alias{AssayTab-method}
+\alias{ANY}
+\alias{ANY-method}
 \title{Extract methods}
 \usage{
-\S4method{[}{ISATab,ANY,ANY,ANY}(x, i, j, drop)
+\S4method{[}{ISATab,ANY,ANY,ANY}(x, i)
 
-\S4method{[}{ISATab,ANY,ANY,ANY}(x, i, j) <- value
+\S4method{[}{ISATab,ANY,ANY,ANY}(x, i) <- value
 
-\S4method{[}{AssayTab,ANY,ANY,ANY}(x, i, j, drop)
+\S4method{[}{AssayTab,ANY,ANY,ANY}(x, i)
 
-\S4method{[}{AssayTab,ANY,ANY,ANY}(x, i, j) <- value
+\S4method{[}{AssayTab,ANY,ANY,ANY}(x, i) <- value
 }
 \description{
 extract slots from an object of class \linkS4class{ISATab}.

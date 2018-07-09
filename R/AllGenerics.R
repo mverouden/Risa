@@ -7,13 +7,13 @@
 #' extract slots from an object of class \linkS4class{ISATab}.
 #'
 #' @name [
-#' @aliases [ ISATab-method
+#' @aliases [ ISATab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setMethod(
   f = "[",
   signature = "ISATab",
-  definition = function(x, i, j, drop) {
+  definition = function(x, i) {
     if (i == "path") return(x@path)
     if (i == "investigation.filename") return(x@investigation.filename)
     if (i == "investigation.file") return(x@investigation.file)
@@ -50,13 +50,13 @@ setMethod(
   }) 
 ## set slots of an ISATab-class object
 #' @name [
-#' @aliases [<- ISATab-method
+#' @aliases [<- ISATab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setReplaceMethod(
   f = "[",
   signature = "ISATab",
-  definition = function(x, i, j, value) {
+  definition = function(x, i, value) {
     if (i == "path") x@path <- value
     if (i == "investigation.filename") x@investigation.filename <- value
     if (i == "investigation.file") x@investigation.file <- value
@@ -98,26 +98,26 @@ setReplaceMethod(
 #' extract slots from an object of class \linkS4class{AssayTab}.
 #'
 #' @name [
-#' @aliases [ AssayTab-method
+#' @aliases [ AssayTab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setMethod(
   f = "[",
   signature = "AssayTab",
-  definition = function(x, i, j, drop) {
+  definition = function(x, i) {
     if (i == "path") return(x@path)
     if (i == "data.filenames") return(x@data.filenames)
   }) 
 
 ## set slots of an AssayTab class object
 #' @name [
-#' @aliases [<- AssayTab-method
+#' @aliases [<- AssayTab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setReplaceMethod(
   f = "[",
   signature = "AssayTab",
-  definition = function(x, i, j, value) {
+  definition = function(x, i, value) {
     if (i == "path") x@path <- value
     if (i == "data.filenames") x@data.filenames <- value
     return(x)
