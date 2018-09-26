@@ -15,7 +15,6 @@
 \alias{SeqAssayTab-class}
 \alias{SeqAssayTab}
 \alias{NMRAssayTab-class}
-\alias{NMRAssayTab}
 \title{S4 Class AssayTab}
 \description{
 An S4 class to store information of an AssayTab.

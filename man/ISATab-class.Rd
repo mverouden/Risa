@@ -4,7 +4,6 @@
 \name{ISATab-class}
 \alias{ISATab-class}
 \alias{ISATab}
-\alias{ISATab}
 \alias{ISATab-initialize}
 \title{S4 Class ISATab}
 \usage{
@@ -14,8 +13,6 @@
 An S4 class to store information from an ISATab dataset, including an
 investigation file, one or more study files, and one or more assay files for
 each study file.
-
-Constructor method of ISATab Class.
 }
 \section{Slots}{
 
