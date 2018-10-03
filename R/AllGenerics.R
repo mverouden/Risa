@@ -5,6 +5,9 @@
 #'
 #' @description 
 #' extract slots from an object of class \linkS4class{ISATab}.
+#' 
+#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
+#' @param i character, name of a slot to extract or set
 #'
 #' @name [
 #' @aliases [ ISATab-method ANY ANY ANY-method
@@ -49,6 +52,8 @@ setMethod(
     if (i == "assay.tabs") return(x@assay.tabs)
   }) 
 ## set slots of an ISATab-class object
+#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
+#' @param i character, name of a slot to extract or set
 #' @name [
 #' @aliases [<- ISATab-method ANY ANY ANY-method
 #' @docType methods
@@ -97,6 +102,9 @@ setReplaceMethod(
 ## get slots of an AssayTab-class object 
 #' extract slots from an object of class \linkS4class{AssayTab}.
 #'
+#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
+#' @param i character, name of a slot to extract or set
+#'
 #' @name [
 #' @aliases [ AssayTab-method ANY ANY ANY-method
 #' @docType methods
@@ -110,6 +118,10 @@ setMethod(
   }) 
 
 ## set slots of an AssayTab class object
+#'
+#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
+#' @param i character, name of a slot to extract or set
+#'
 #' @name [
 #' @aliases [<- AssayTab-method ANY ANY ANY-method
 #' @docType methods
