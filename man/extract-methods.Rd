@@ -18,6 +18,23 @@
 
 \S4method{[}{AssayTab,ANY,ANY,ANY}(x, i) <- value
 }
+\arguments{
+\item{x}{S4 object of class \code{ISTab} or \code{AssayTab}}
+
+\item{i}{character, name of a slot to extract or set}
+
+\item{x}{S4 object of class \code{ISTab} or \code{AssayTab}}
+
+\item{i}{character, name of a slot to extract or set}
+
+\item{x}{S4 object of class \code{ISTab} or \code{AssayTab}}
+
+\item{i}{character, name of a slot to extract or set}
+
+\item{x}{S4 object of class \code{ISTab} or \code{AssayTab}}
+
+\item{i}{character, name of a slot to extract or set}
+}
 \description{
 extract slots from an object of class \linkS4class{ISATab}.
 }
