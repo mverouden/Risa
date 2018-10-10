@@ -1,15 +1,15 @@
 ## ISATab-class
 ## get slots of an ISATab-class object
-#' @title Extract methods 
+#' @title Extract and replace methods 
 #'
 #' @description 
-#' extract slots from an object of class \linkS4class{ISATab}.
+#' Extract or replace slots from an object of class \linkS4class{ISATab}.
 #' 
 #' @param x S4 object of class \code{ISTab} or \code{AssayTab}
 #' @param i character, name of a slot to extract or set
 #'
 #' @docType methods
-#' @rdname extract-methods
+#' @rdname extractandreplace-methods
 setMethod(
   f = "[",
   signature = c(x = "ISATab", i = "character"),
@@ -49,12 +49,10 @@ setMethod(
     if (i == "assay.tabs") return(x@assay.tabs)
   }) 
 ## set slots of an ISATab-class object
-#' Replacement-method for slots
-#'
 #' @param value ANY, value for the slotname specified by i to be replaced
 #' 
 #' @docType methods
-#' @rdname extract-methods
+#' @rdname extractandreplace-methods
 setReplaceMethod(
   f = "[",
   signature = c(x = "ISATab", i = "character", value = "ANY"),
@@ -97,12 +95,11 @@ setReplaceMethod(
 
 ## AssayTab-class
 ## get slots of an AssayTab-class object
-#' Retrieve slots from AssayTab-class 
-#' 
-#' extract slots from an object of class \linkS4class{AssayTab}.
+#' @description 
+#' Extract or replace slots from an object of class \linkS4class{AssayTab}.
 #'
 #' @docType methods
-#' @rdname extract-methods
+#' @rdname extractandreplace-methods
 setMethod(
   f = "[",
   signature = c(x = "AssayTab", i = "character"),
@@ -113,7 +110,7 @@ setMethod(
 
 ## set slots of an AssayTab class object
 #' @docType methods
-#' @rdname extract-methods
+#' @rdname extractandreplace-methods
 setReplaceMethod(
   f = "[",
   signature = c(x = "AssayTab", i = "character", value = "ANY"),

@@ -6,7 +6,7 @@
 \alias{[<-,ISATab,character,ANY,ANY-method}
 \alias{[,AssayTab,character,ANY,ANY-method}
 \alias{[<-,AssayTab,character,ANY,ANY-method}
-\title{Extract methods}
+\title{Extract and replace methods}
 \usage{
 \S4method{[}{ISATab,character,ANY,ANY}(x, i)
 
@@ -24,7 +24,7 @@
 \item{value}{ANY, value for the slotname specified by i to be replaced}
 }
 \description{
-extract slots from an object of class \linkS4class{ISATab}.
+Extract or replace slots from an object of class \linkS4class{ISATab}.
 
-extract slots from an object of class \linkS4class{AssayTab}.
+Extract or replace slots from an object of class \linkS4class{AssayTab}.
 }
