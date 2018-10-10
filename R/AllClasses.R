@@ -163,7 +163,7 @@ ISATab <- setClass(Class = "ISATab",
 #' @name AssayTab-class
 #' @rdname AssayTab-class
 #' @exportClass AssayTab
-#' @seealso \code{\link{ISATab-class}}, \code{\link{ISATab-method}}
+#' @seealso \code{\link{ISATab-class}}, \code{\link{ISATab}}
 #' @aliases MSAssayTab, MicroarrayAssayTab, SeqAssayTab, NMRAssayTab
 AssayTab <- setClass(Class = "AssayTab",
                      slots = c(

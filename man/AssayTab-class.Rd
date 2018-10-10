@@ -55,7 +55,7 @@ showClass("NMRAssayTab")
 
 }
 \seealso{
-\code{\link{ISATab-class}}, \code{\link{ISATab-method}}
+\code{\link{ISATab-class}}, \code{\link{ISATab}}
 }
 \author{
 Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})

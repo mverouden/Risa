@@ -4,10 +4,17 @@
 \name{ISATab-class}
 \alias{ISATab-class}
 \alias{ISATab}
+\alias{initialize,ISATab-method}
 \alias{ISATab-initialize}
 \title{S4 Class ISATab}
 \usage{
 \S4method{initialize}{ISATab}(.Object, path)
+}
+\arguments{
+\item{.Object}{character, name of the object of class ISATab to be initialized}
+
+\item{path}{length-one character vector containing the path to the ISA-Tab
+dataset.}
 }
 \description{
 An S4 class to store information from an ISATab dataset, including an

@@ -1,7 +1,6 @@
 ## ISATab-class
 ## get slots of an ISATab-class object
-#' @title 
-#' Extract methods 
+#' @title Extract methods 
 #'
 #' @description 
 #' extract slots from an object of class \linkS4class{ISATab}.
@@ -9,13 +8,11 @@
 #' @param x S4 object of class \code{ISTab} or \code{AssayTab}
 #' @param i character, name of a slot to extract or set
 #'
-#' @name [
-#' @aliases [ ISATab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setMethod(
   f = "[",
-  signature = "ISATab",
+  signature = c(x = "ISATab", i = "character"),
   definition = function(x, i) {
     if (i == "path") return(x@path)
     if (i == "investigation.filename") return(x@investigation.filename)
@@ -52,15 +49,15 @@ setMethod(
     if (i == "assay.tabs") return(x@assay.tabs)
   }) 
 ## set slots of an ISATab-class object
-#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
-#' @param i character, name of a slot to extract or set
-#' @name [
-#' @aliases [<- ISATab-method ANY ANY ANY-method
+#' Replacement-method for slots
+#'
+#' @param value ANY, value for the slotname specified by i to be replaced
+#' 
 #' @docType methods
 #' @rdname extract-methods
 setReplaceMethod(
   f = "[",
-  signature = "ISATab",
+  signature = c(x = "ISATab", i = "character", value = "ANY"),
   definition = function(x, i, value) {
     if (i == "path") x@path <- value
     if (i == "investigation.filename") x@investigation.filename <- value
@@ -99,36 +96,27 @@ setReplaceMethod(
   })
 
 ## AssayTab-class
-## get slots of an AssayTab-class object 
+## get slots of an AssayTab-class object
+#' Retrieve slots from AssayTab-class 
+#' 
 #' extract slots from an object of class \linkS4class{AssayTab}.
 #'
-#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
-#' @param i character, name of a slot to extract or set
-#'
-#' @name [
-#' @aliases [ AssayTab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setMethod(
   f = "[",
-  signature = "AssayTab",
+  signature = c(x = "AssayTab", i = "character"),
   definition = function(x, i) {
     if (i == "path") return(x@path)
     if (i == "data.filenames") return(x@data.filenames)
   }) 
 
 ## set slots of an AssayTab class object
-#'
-#' @param x S4 object of class \code{ISTab} or \code{AssayTab}
-#' @param i character, name of a slot to extract or set
-#'
-#' @name [
-#' @aliases [<- AssayTab-method ANY ANY ANY-method
 #' @docType methods
 #' @rdname extract-methods
 setReplaceMethod(
   f = "[",
-  signature = "AssayTab",
+  signature = c(x = "AssayTab", i = "character", value = "ANY"),
   definition = function(x, i, value) {
     if (i == "path") x@path <- value
     if (i == "data.filenames") x@data.filenames <- value
@@ -137,7 +125,10 @@ setReplaceMethod(
 
 #' Constructor method of ISATab Class.
 #'
-#' @name ISATab
+#' @param .Object character, name of the object of class ISATab to be initialized
+#' @param path length-one character vector containing the path to the ISA-Tab
+#'             dataset.
+#'
 #' @rdname ISATab-class
 #' @aliases ISATab-initialize
 setMethod(
@@ -766,11 +757,13 @@ setMethod(
 #'
 #' @return list of matrices (one matrix per assay file) containing the raw data filenames
 #'
+#' @rdname getRawDataFilenames
 #' @export
 setGeneric(name = "getRawDataFilenames",
            def = function(.Object, full.path = TRUE) {
              standardGeneric("getRawDataFilenames")
            })
+#' @rdname getRawDataFilenames
 setMethod(
   f = "getRawDataFilenames",
   signature = c(.Object = "ISATab", full.path = "logical"),
