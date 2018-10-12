@@ -139,3 +139,10 @@ MicroarrayAssayTab), representing the information of each of
 the assay files in the investigation.}
 }}
 
+\seealso{
+\code{\link{[,ISATab,character,ANY,ANY-method}}, \code{\link{[<-,ISATab,character,ANY,ANY-method}}, \code{\link{AssayTab-class}}, \linkS4class{AssayTab}
+}
+\author{
+Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+}
+\keyword{classes}

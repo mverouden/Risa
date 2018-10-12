@@ -1,6 +1,6 @@
 ## ISATab-class
 ## get slots of an ISATab-class object
-#' @title Extract and replace methods 
+#' @title Extract and replace methods for S4-class objects
 #'
 #' @description 
 #' Extract or replace slots from an object of class \linkS4class{ISATab}.

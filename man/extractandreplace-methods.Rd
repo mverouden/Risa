@@ -6,7 +6,7 @@
 \alias{[<-,ISATab,character,ANY,ANY-method}
 \alias{[,AssayTab,character,ANY,ANY-method}
 \alias{[<-,AssayTab,character,ANY,ANY-method}
-\title{Extract and replace methods}
+\title{Extract and replace methods for S4-class objects}
 \usage{
 \S4method{[}{ISATab,character,ANY,ANY}(x, i)
 

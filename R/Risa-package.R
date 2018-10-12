@@ -74,5 +74,5 @@
 #' @importFrom utils count.fields data read.csv read.table write.table
 #'
 #' @docType package
-#' @name Risa
+#' @name Risa-package
 NULL
