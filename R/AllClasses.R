@@ -1,3 +1,5 @@
+### Classes
+### ISATab Class ----
 #' @title
 #' S4 Class ISATab
 #'
@@ -132,6 +134,7 @@ ISATab <- setClass(Class = "ISATab",
                      groups = "list",
                      assay.tabs = "list"))
 
+### AssayTab Class ----
 #' @title
 #' S4 Class AssayTab
 #'
@@ -177,6 +180,7 @@ AssayTab <- setClass(Class = "AssayTab",
                        data.filenames = "data.frame")
                      )
 
+### Validity function FCAssayTab Class ----
 validFCAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$fc) {
     return(TRUE)
@@ -188,7 +192,7 @@ validFCAssayTabObject <- function(object) {
                  sep = ""))
   }
 }
-
+### FCAssayTab Class ----
 #' @title
 #' S4 Class FCAssayTab
 #'
@@ -236,6 +240,7 @@ FCAssayTab <- setClass(Class = "FCAssayTab",
                                contains = "AssayTab",
                                validity = validFCAssayTabObject)
 
+### Validity function MicroarrayAssayTab Class ----
 validMicroarrayAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$microarray) {
     return(TRUE)
@@ -247,7 +252,7 @@ validMicroarrayAssayTabObject <- function(object) {
                  sep = ""))
   }
 }
-
+### MicroarrayAssayTab Class ----
 #' @title
 #' S4 Class MicroarrayAssayTab
 #'
@@ -295,6 +300,7 @@ MicroarrayAssayTab <- setClass(Class = "MicroarrayAssayTab",
                                contains = "AssayTab",
                                validity = validMicroarrayAssayTabObject)
 
+### Validity function MSAssayTab Class ----
 validMSAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$ms) {
     return(TRUE)
@@ -306,7 +312,7 @@ validMSAssayTabObject <- function(object) {
                  sep = ""))
   }
 }
-
+### MSAssayTab Class ----
 #' @title
 #' S4 Class MSAssayTab
 #'
@@ -354,6 +360,7 @@ MSAssayTab <- setClass(Class = "MSAssayTab",
                        contains = "AssayTab",
                        validity = validMSAssayTabObject)
 
+### Validity function NMRAssayTab Class ----
 validNMRAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$nmr) {
     return(TRUE)
@@ -365,7 +372,7 @@ validNMRAssayTabObject <- function(object) {
                  sep = ""))
   }
 }
-
+### NMRAssayTab Class ----
 #' @title
 #' S4 Class NMRAssayTab
 #'
@@ -412,6 +419,7 @@ NMRAssayTab <- setClass(Class = "NMRAssayTab",
                         prototype(assay.technology.type = "NMR spectroscopy"),
                         contains = "AssayTab")
 
+### Validity function SeqAssayTab Class ----
 validSeqAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$seq) {
     return(TRUE)
@@ -423,7 +431,7 @@ validSeqAssayTabObject <- function(object) {
                  sep = ""))
   }
 }
-
+### SeqAssayTab Class ----
 #' @title
 #' S4 Class SeqAssayTab
 #'
