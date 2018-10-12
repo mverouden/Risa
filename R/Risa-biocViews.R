@@ -2,7 +2,7 @@ bioconductor.version <- 3.1 # suggested change into as.double(as.character(BiocI
 getPackagesInBiocView <- function(view, 
                                   reposUrl = c("BiocSoftware", "BiocAnnotationData", "BiocExperimentData"),
                                   biocVersion = bioconductor.version) {
-  data("biocViewsVocab")
+  data("biocViewsVocab", package = "biocViews", environment = environment())
   reposUrl <- match.arg(reposUrl)
   biocMirror <- getOption("BioC_mirror", "http://bioconductor.org")
   ## builds the paths for the URL
