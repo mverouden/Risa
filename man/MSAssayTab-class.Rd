@@ -44,9 +44,12 @@ showClass("MSAssayTab")
 \seealso{
 \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
-         \code{\link{AssayTab-class}}, \code{\link{ISATab-class}},
+         \code{\link{AssayTab-class}},
+         \code{\link{ISATab-class}},
+         \code{\link{FCAssayTab-class}},
          \code{\link{MicroarrayAssayTab-class}},
-         \code{\link{SeqAssayTab-class}}, \code{\link{NMRAssayTab-class}}
+         \code{\link{SeqAssayTab-class}},
+         \code{\link{NMRAssayTab-class}}
 }
 \author{
 Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})

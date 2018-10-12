@@ -177,23 +177,25 @@ AssayTab <- setClass(Class = "AssayTab",
                        data.filenames = "data.frame")
                      )
 
-validMSAssayTabObject <- function(object) {
-  if (object@assay.technology.type == technology.types$ms) {
-    TRUE
+validFCAssayTabObject <- function(object) {
+  if (object@assay.technology.type == technology.types$fc) {
+    return(TRUE)
   } else {
-    paste("Technology type is not \"mass spectrometry\" for ",
-          object,
-          sep = "")
+    return(paste("Technology type is not '",
+                 technology.types$fc,
+                 "' for ",
+                 object,
+                 sep = ""))
   }
 }
 
 #' @title
-#' S4 Class MSAssayTab
+#' S4 Class FCAssayTab
 #'
 #' @description
-#' An S4 class to store information in an object about a Mass Spectrometry 
-#' Assay. It is an extension of the \linkS4class{AssayTab} class, where the
-#' assay.technology.type is specified as "mass spectrometry".
+#' An S4 class to store information in an object about an Flow Cytometry Assay. 
+#' It is an extension of the \linkS4class{AssayTab} class, where the
+#' assay.technology.type is specified as "flow cytometry".
 #'
 #' @slot path A length-one character vector containing the path to the ISA-Tab
 #'            dataset.
@@ -204,7 +206,7 @@ validMSAssayTabObject <- function(object) {
 #' @slot assay.filename A character vector with the filename of the assay.
 #' @slot assay.file A data frame object with the contents of the assay file.
 #' @slot assay.technology.type A character vector specifying the technology type
-#'                             of the assay as "mass spectromtry".
+#'                             of the assay as "flow cytometry".
 #' @slot assay.measurement.type A character vector with the measurement type of
 #'                              the assay.
 #' @slot assay.names A data frame object with the assay names for the assay file.
@@ -215,27 +217,32 @@ validMSAssayTabObject <- function(object) {
 #' 
 #' @seealso \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
 #'          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
-#'          \code{\link{AssayTab-class}}, \code{\link{ISATab-class}},
+#'          \code{\link{AssayTab-class}},
+#'          \code{\link{ISATab-class}},
 #'          \code{\link{MicroarrayAssayTab-class}},
-#'          \code{\link{SeqAssayTab-class}}, \code{\link{NMRAssayTab-class}}
+#'          \code{\link{MSAssayTab-class}},
+#'          \code{\link{NMRAssayTab-class}},
+#'          \code{\link{SeqAssayTab-class}}
 #' 
 #' @examples
-#' showClass("MSAssayTab")
+#' showClass("FCAssayTab")
 #'
 #' @keywords classes
-#' @rdname MSAssayTab-class
+#' @rdname FCAssayTab-class
 #' @export
-MSAssayTab <- setClass(Class = "MSAssayTab",
-                       representation(),
-                       prototype(assay.technology.type = "mass spectrometry"),
-                       contains = "AssayTab",
-                       validity = validMSAssayTabObject)
+FCAssayTab <- setClass(Class = "FCAssayTab",
+                               representation(),
+                               prototype(assay.technology.type = "flow cytometry"),
+                               contains = "AssayTab",
+                               validity = validFCAssayTabObject)
 
 validMicroarrayAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$microarray) {
     return(TRUE)
   } else {
-    return(paste("Technology type is not \"DNA microarray\" for ",
+    return(paste("Technology type is not '",
+                 technology.types$microarray,
+                 "' for ",
                  object,
                  sep = ""))
   }
@@ -269,9 +276,12 @@ validMicroarrayAssayTabObject <- function(object) {
 #' 
 #' @seealso \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
 #'          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
-#'          \code{\link{AssayTab-class}}, \code{\link{ISATab-class}},
-#'          \code{\link{MSAssayTab-class}}, \code{\link{SeqAssayTab-class}},
-#'          \code{\link{NMRAssayTab-class}}
+#'          \code{\link{AssayTab-class}},
+#'          \code{\link{ISATab-class}},
+#'          \code{\link{FCAssayTab-class}},
+#'          \code{\link{MSAssayTab-class}},
+#'          \code{\link{NMRAssayTab-class}},
+#'          \code{\link{SeqAssayTab-class}}
 #' 
 #' @examples
 #' showClass("MicroarrayAssayTab")
@@ -285,11 +295,130 @@ MicroarrayAssayTab <- setClass(Class = "MicroarrayAssayTab",
                                contains = "AssayTab",
                                validity = validMicroarrayAssayTabObject)
 
+validMSAssayTabObject <- function(object) {
+  if (object@assay.technology.type == technology.types$ms) {
+    return(TRUE)
+  } else {
+    return(paste("Technology type is not '",
+                 technology.types$ms,
+                 "' for ",
+                 object,
+                 sep = ""))
+  }
+}
+
+#' @title
+#' S4 Class MSAssayTab
+#'
+#' @description
+#' An S4 class to store information in an object about a Mass Spectrometry 
+#' Assay. It is an extension of the \linkS4class{AssayTab} class, where the
+#' assay.technology.type is specified as "mass spectrometry".
+#'
+#' @slot path A length-one character vector containing the path to the ISA-Tab
+#'            dataset.
+#' @slot study.filename A character vector with the filename of the study to
+#'                      which this assay belongs to.
+#' @slot study.identifier A character vector with the identifier of the study to
+#'                        which this assay belongs to.
+#' @slot assay.filename A character vector with the filename of the assay.
+#' @slot assay.file A data frame object with the contents of the assay file.
+#' @slot assay.technology.type A character vector specifying the technology type
+#'                             of the assay as "mass spectromtry".
+#' @slot assay.measurement.type A character vector with the measurement type of
+#'                              the assay.
+#' @slot assay.names A data frame object with the assay names for the assay file.
+#' @slot data.filenames A data frame object with the data filenames for the assay.
+#'
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#' 
+#' @seealso \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
+#'          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
+#'          \code{\link{AssayTab-class}},
+#'          \code{\link{ISATab-class}},
+#'          \code{\link{FCAssayTab-class}},
+#'          \code{\link{MicroarrayAssayTab-class}},
+#'          \code{\link{SeqAssayTab-class}},
+#'          \code{\link{NMRAssayTab-class}}
+#' 
+#' @examples
+#' showClass("MSAssayTab")
+#'
+#' @keywords classes
+#' @rdname MSAssayTab-class
+#' @export
+MSAssayTab <- setClass(Class = "MSAssayTab",
+                       representation(),
+                       prototype(assay.technology.type = "mass spectrometry"),
+                       contains = "AssayTab",
+                       validity = validMSAssayTabObject)
+
+validNMRAssayTabObject <- function(object) {
+  if (object@assay.technology.type == technology.types$nmr) {
+    return(TRUE)
+  } else {
+    return(paste("Technology type is not '",
+                 technology.types$nmr,
+                 "' for ",
+                 object,
+                 sep = ""))
+  }
+}
+
+#' @title
+#' S4 Class NMRAssayTab
+#'
+#' @description
+#' An S4 class to store information in an object about a NMR Assay. It
+#' is an extension of the \linkS4class{AssayTab} class, where the
+#' assay.technology.type is specified as "NMR spectroscopy".
+#'
+#' @slot path A length-one character vector containing the path to the ISA-Tab
+#'            dataset.
+#' @slot study.filename A character vector with the filename of the study to
+#'                      which this assay belongs to.
+#' @slot study.identifier A character vector with the identifier of the study to
+#'                        which this assay belongs to.
+#' @slot assay.filename A character vector with the filename of the assay.
+#' @slot assay.file A data frame object with the contents of the assay file.
+#' @slot assay.technology.type A character vector specifying the technology type
+#'                             of the assay as "NMR spectroscopy".
+#' @slot assay.measurement.type A character vector with the measurement type of
+#'                              the assay.
+#' @slot assay.names A data frame object with the assay names for the assay file.
+#' @slot data.filenames A data frame object with the data filenames for the assay.
+#'
+#' @author 
+#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
+#'
+#' @seealso \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
+#'          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
+#'          \code{\link{AssayTab-class}},
+#'          \code{\link{ISATab-class}},
+#'          \code{\link{FCAssayTab-class}},
+#'          \code{\link{MicroarrayAssayTab-class}},
+#'          \code{\link{MSAssayTab-class}},
+#'          \code{\link{SeqAssayTab-class}},
+#' 
+#' @examples
+#' showClass("NMRAssayTab")
+#'
+#' @keywords classes
+#' @rdname NMRAssayTab-class
+#' @export
+NMRAssayTab <- setClass(Class = "NMRAssayTab",
+                        representation(),
+                        prototype(assay.technology.type = "NMR spectroscopy"),
+                        contains = "AssayTab")
+
 validSeqAssayTabObject <- function(object) {
   if (object@assay.technology.type == technology.types$seq) {
     return(TRUE)
   } else {
-    return(paste("Technology type is not \"nucleotide sequencing\" for ",
+    return(paste("Technology type is not '",
+                 technology.types$seq,
+                 "' for ",
                  object,
                  sep = ""))
   }
@@ -323,9 +452,11 @@ validSeqAssayTabObject <- function(object) {
 #' 
 #' @seealso \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
 #'          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
-#'          \code{\link{AssayTab-class}}, \code{\link{ISATab-class}},
-#'          \code{\link{MSAssayTab-class}},
+#'          \code{\link{AssayTab-class}},
+#'          \code{\link{ISATab-class}},
+#'          \code{\link{FCAssayTab-class}},
 #'          \code{\link{MicroarrayAssayTab-class}},
+#'          \code{\link{MSAssayTab-class}},
 #'          \code{\link{NMRAssayTab-class}}
 #' 
 #' @examples
@@ -337,57 +468,4 @@ validSeqAssayTabObject <- function(object) {
 SeqAssayTab <- setClass(Class = "SeqAssayTab",
                         representation(),
                         prototype(assay.technology.type = "nucleotide sequencing"),
-                        contains = "AssayTab")
-
-validNMRAssayTabObject <- function(object) {
-  if (object@assay.technology.type == technology.types$nmr) {
-    return(TRUE)
-  } else {
-    return(paste("Technology type is not \"NMR spectroscopy\" for ",
-                 object,
-                 sep = ""))
-  }
-}
-#' @title
-#' S4 Class NMRAssayTab
-#'
-#' @description
-#' An S4 class to store information in an object about a NMR Assay. It
-#' is an extension of the \linkS4class{AssayTab} class, where the
-#' assay.technology.type is specified as "NMR spectroscopy".
-#'
-#' @slot path A length-one character vector containing the path to the ISA-Tab
-#'            dataset.
-#' @slot study.filename A character vector with the filename of the study to
-#'                      which this assay belongs to.
-#' @slot study.identifier A character vector with the identifier of the study to
-#'                        which this assay belongs to.
-#' @slot assay.filename A character vector with the filename of the assay.
-#' @slot assay.file A data frame object with the contents of the assay file.
-#' @slot assay.technology.type A character vector specifying the technology type
-#'                             of the assay as "NMR spectroscopy".
-#' @slot assay.measurement.type A character vector with the measurement type of
-#'                              the assay.
-#' @slot assay.names A data frame object with the assay names for the assay file.
-#' @slot data.filenames A data frame object with the data filenames for the assay.
-#'
-#' @author 
-#' Alejandra Gonzalez-Beltran (maintainer, ISA Team e-mail:\email{isatools@googlegroups.com})
-#'
-#' @seealso \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
-#'          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
-#'          \code{\link{AssayTab-class}}, \code{\link{ISATab-class}},
-#'          \code{\link{MSAssayTab-class}},
-#'          \code{\link{MicroarrayAssayTab-class}},
-#'          \code{\link{SeqAssayTab-class}},
-#' 
-#' @examples
-#' showClass("NMRAssayTab")
-#'
-#' @keywords classes
-#' @rdname NMRAssayTab-class
-#' @export
-NMRAssayTab <- setClass(Class = "NMRAssayTab",
-                        representation(),
-                        prototype(assay.technology.type = "NMR spectroscopy"),
                         contains = "AssayTab")

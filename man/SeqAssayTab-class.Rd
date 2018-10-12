@@ -44,9 +44,11 @@ showClass("SeqAssayTab")
 \seealso{
 \code{\link{[,AssayTab,character,ANY,ANY-method}}, 
          \code{\link{[<-,AssayTab,character,ANY,ANY-method}},
-         \code{\link{AssayTab-class}}, \code{\link{ISATab-class}},
-         \code{\link{MSAssayTab-class}},
+         \code{\link{AssayTab-class}},
+         \code{\link{ISATab-class}},
+         \code{\link{FCAssayTab-class}},
          \code{\link{MicroarrayAssayTab-class}},
+         \code{\link{MSAssayTab-class}},
          \code{\link{NMRAssayTab-class}}
 }
 \author{

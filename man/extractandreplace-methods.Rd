@@ -26,5 +26,8 @@
 \description{
 Extract or replace slots from an object of class \linkS4class{ISATab}.
 
-Extract or replace slots from an object of class \linkS4class{AssayTab}.
+Extract or replace slots from an object of class \linkS4class{AssayTab},
+\linkS4class{FCAssayTab}, \linkS4class{MicroarrayAssayTab},
+\linkS4class{MSAssayTab}, \linkS4class{NMRAssayTab}, or 
+\linkS4class{SeqAssayTab}.
 }

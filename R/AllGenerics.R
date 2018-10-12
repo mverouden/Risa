@@ -1,5 +1,5 @@
 ## ISATab-class
-## get slots of an ISATab-class object
+### Extract slots of an ISATab-class object ----
 #' @title Extract and replace methods for S4-class objects
 #'
 #' @description 
@@ -48,7 +48,7 @@ setMethod(
     if (i == "groups") return(x@groups)
     if (i == "assay.tabs") return(x@assay.tabs)
   }) 
-## set slots of an ISATab-class object
+### Replace slots of an ISATab-class object ----
 #' @param value ANY, value for the slotname specified by i to be replaced
 #' 
 #' @docType methods
@@ -94,9 +94,12 @@ setReplaceMethod(
   })
 
 ## AssayTab-class
-## get slots of an AssayTab-class object
+### Extract slots of an AssayTab-class object ----
 #' @description 
-#' Extract or replace slots from an object of class \linkS4class{AssayTab}.
+#' Extract or replace slots from an object of class \linkS4class{AssayTab},
+#' \linkS4class{FCAssayTab}, \linkS4class{MicroarrayAssayTab},
+#' \linkS4class{MSAssayTab}, \linkS4class{NMRAssayTab}, or 
+#' \linkS4class{SeqAssayTab}.
 #'
 #' @docType methods
 #' @rdname extractandreplace-methods
@@ -108,7 +111,7 @@ setMethod(
     if (i == "data.filenames") return(x@data.filenames)
   }) 
 
-## set slots of an AssayTab class object
+### Replace slots of an AssayTab class object ----
 #' @docType methods
 #' @rdname extractandreplace-methods
 setReplaceMethod(
@@ -120,6 +123,7 @@ setReplaceMethod(
     return(x)
   })
 
+### Constructor methods ----
 #' Constructor method of ISATab Class.
 #'
 #' @param .Object character, name of the object of class ISATab to be initialized
@@ -735,9 +739,7 @@ setMethod(
     return(.Object)
   })
 
-################################################################################
-### getRawDataFilenames
-################################################################################
+### getRawDataFilenames ----
 ### generic method called 'getAssayRawDataFilenames' that dispatches on the type
 ### of object it's applied to
 #' @title Retrieve the raw data filenames in an ISATab dataset object.
@@ -773,9 +775,7 @@ setMethod(
     return(raw.data.filenames)
   })
 
-################################################################################
-### getAssayRawDataFilenames
-################################################################################
+### getAssayRawDataFilenames ----
 ### generic method called 'getAssayRawDataFilenames' that dispatches on the type
 ### of object it's applied to
 #' getAssayRawDataFilenames Generic
@@ -894,9 +894,8 @@ setMethod(
     return(msfiles)
   })
 
-################################################################################
-### getAssayFilenames
-################################################################################
+
+### getAssayFilenames ----
 setGeneric(name = "getAssayNames",
            def = function(.Object, full.path) {
              standardGeneric("getAssayNames")
@@ -928,9 +927,7 @@ setMethod(
 #   return(microarray.assay.filenames)
 # }
 
-################################################################################
-### getDerivedDataFilenames
-################################################################################
+### getDerivedDataFilenames ----
 setGeneric(name = "getDerivedDataFilenames",
            def = function(.Object, full.path) {
              standardGeneric("getDerivedDataFilenames")
