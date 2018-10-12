@@ -38,6 +38,7 @@ cel.files <- c("GSM510377_SA2006121413.CEL", "GSM510378_SA2006121414.CEL",
                "GSM510391_SA2006121442.CEL")
 
 \dontrun{
+
 ### Webadress not active anymore!!
 base.url <- "http://perdera.sph.harvard.edu/biidata/microarray/study_ARMSTRONG-S-3_3Zd4KeJNJ7/raw_data/"
 
