@@ -42,4 +42,4 @@ biocViews:
 URL: http://www.isa-tools.org/
 BugReports: https://github.com/ISA-tools/Risa/issues
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
